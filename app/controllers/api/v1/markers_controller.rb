@@ -15,7 +15,7 @@ class Api::V1::MarkersController < ApplicationController
 					render_error "広告が見つかりません"
 				else
 					adv = advertisings.sample
-					render json:{character_id:characters.sample.id, image_url:adv.image_url, link_url:adv.link_url}
+					render json:{character_id:characters.sample.id, advertising_id:adv.id, image_url:adv.image_url, link_url:adv.link_url}
 				end
 			end
 		end
