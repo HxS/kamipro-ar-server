@@ -1,4 +1,4 @@
-class Api::V1::ResourcesController < ApplicationController
+class Api::V1::AppsController < ApplicationController
 	include JSONError
   def resources
 		app_id = params["id"]
