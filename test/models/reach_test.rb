@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CharacterImpressionTest < ActiveSupport::TestCase
+class ReachTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

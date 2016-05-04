@@ -1,6 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  marker_id: 
+  character_id: 
   advertising_id: 
   user_id: 
   latitude: 1.5
@@ -8,6 +10,8 @@ one:
   displayed_at: 
 
 two:
+  marker_id: 
+  character_id: 
   advertising_id: 
   user_id: 
   latitude: 1.5

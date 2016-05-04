@@ -1,6 +1,8 @@
-class CreateAdvertisingImpressions < ActiveRecord::Migration
+class CreateReaches < ActiveRecord::Migration
   def change
-    create_table :advertising_impressions do |t|
+    create_table :reaches do |t|
+      t.references :marker, index: true, foreign_key: true
+      t.references :character, index: true, foreign_key: true
       t.references :advertising, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
       t.float :latitude

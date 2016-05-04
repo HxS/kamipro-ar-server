@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AdvertisingImpressionTest < ActiveSupport::TestCase
+class ImpressionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
