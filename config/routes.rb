@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 		namespace :v1 do
 			post '/signup' => 'users#signup'
 			get '/apps/:id/resources' => 'resources#resources'
+			get '/markers/:id/results' => 'markers#results'
 		end
 	end
 
