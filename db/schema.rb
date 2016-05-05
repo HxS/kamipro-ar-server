@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504175136) do
+ActiveRecord::Schema.define(version: 20160505010439) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",           limit: 255
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20160504175136) do
     t.float    "longitude",      limit: 24
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.datetime "displayed_at"
   end
 
   add_index "impressions", ["advertising_id"], name: "index_impressions_on_advertising_id", using: :btree
@@ -105,6 +106,7 @@ ActiveRecord::Schema.define(version: 20160504175136) do
     t.float    "longitude",      limit: 24
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.datetime "displayed_at"
   end
 
   add_index "reaches", ["advertising_id"], name: "index_reaches_on_advertising_id", using: :btree
