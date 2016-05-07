@@ -5,7 +5,6 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: postgresql
   pool: 5
   timeout: 5000
 
@@ -24,4 +23,8 @@ test:
 
 production:
   <<: *default
-  database: kamiproar
+  adapter: postgresql
+  host: ec2-54-243-226-46.compute-1.amazonaws.com
+  database: d4prvecph3hkvp
+  username: sjgysopjggzyre
+  password: Rsk4s0qqr5HVpCSQ_e90n1yXNS
