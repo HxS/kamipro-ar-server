@@ -31,6 +31,20 @@ class Api::V1::AppsController < ApplicationController
 			save_params[k] = params[k].presence
 		}
 		save_params[:displayed_at] = Time.now
+
+		unless Marker.find_by(id:save_params[:marker_id])
+			render_error "指定されたマーカが存在しません"
+			return
+		end
+		unless Character.find_by(id:save_params[:character_id])
+			render_error "指定されたキャラクタが存在しません"
+			return
+		end
+		unless Advertising.find_by(id:save_params[:advertising_id])
+			render_error "指定された広告が存在しません"
+			return
+		end
+
 		impl = Impression.create(save_params)
 		if impl.invalid?
 			render_error "パラメータが不足しています"
@@ -52,6 +66,18 @@ class Api::V1::AppsController < ApplicationController
 			save_params[k] = params[k].presence
 		}
 		save_params[:displayed_at] = Time.now
+		unless Marker.find_by(id:save_params[:marker_id])
+			render_error "指定されたマーカが存在しません"
+			return
+		end
+		unless Character.find_by(id:save_params[:character_id])
+			render_error "指定されたキャラクタが存在しません"
+			return
+		end
+		unless Advertising.find_by(id:save_params[:advertising_id])
+			render_error "指定された広告が存在しません"
+			return
+		end
 		reach = Reach.create(save_params)
 		if reach.invalid?
 			render_error "パラメータが不足しています"
