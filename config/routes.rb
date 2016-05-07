@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :characters
     resources :companies
 		resources :staffs
+		resources :apps
+		resources :advertisings
   end
 
 	namespace :api, { format: 'json' } do
