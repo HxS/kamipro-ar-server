@@ -1,5 +1,7 @@
 class Api::V1::AppsController < ApplicationController
 	include JSONError
+	protect_from_forgery with: :null_session
+	skip_before_filter :verify_authenticity_token
   def resources
 		app_id = params["id"]
 		app = App.find_by(id:app_id)

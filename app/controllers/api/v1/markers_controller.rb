@@ -1,5 +1,7 @@
 class Api::V1::MarkersController < ApplicationController
 	include JSONError
+	protect_from_forgery with: :null_session
+	skip_before_filter :verify_authenticity_token
   def results
 		marker_id = params["id"]
 		marker = Marker.find_by(id:marker_id)
