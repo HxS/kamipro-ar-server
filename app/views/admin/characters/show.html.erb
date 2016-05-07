@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @character.name %>
+</p>
+
+<p>
+  <strong>Asset url:</strong>
+  <%= @character.asset_url %>
+</p>
+
+<p>
+  <strong>Thumbnail url:</strong>
+  <%= @character.thumbnail_url %>
+</p>
+
+<%= link_to 'Edit', edit_admin_character_path(@character) %> |
+<%= link_to 'Back', admin_characters_path %>
