@@ -11,6 +11,14 @@ Rails.application.routes.draw do
 		resources :advertisings
   end
 
+
+  namespace :company do
+		resources :staffs
+		resources :advertisings
+    resources :markers
+		resources :advertisings
+  end
+
 	namespace :api, { format: 'json' } do
 		namespace :v1 do
 			post '/signup' => 'users#signup'

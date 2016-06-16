@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @marker.company_id %>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= @marker.image_url %>
+</p>
+
+<%= link_to 'Edit', edit_admin_marker_path(@marker) %> |
+<%= link_to 'Back', admin_markers_path %>

@@ -1,0 +1,45 @@
+<%= render 'admin/header' %>
+<div class="container content">
+  <div class="row">
+    <%= render 'admin/sidebar' %>
+		<div class="col-md-9">
+			<%= form_for([:admin, @company]) do |f| %>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>項目</th>
+							<th>内容</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>ID</th>
+							<td><%= @company.id %></td>
+						</tr>
+						<tr>
+							<th>名前</th>
+							<td><%= f.text_field :name, class:"form-control" %></td>
+						</tr>
+						<tr>
+							<th>有効/無効</th>
+							<td>
+								<%= f.check_box :disabled %> 有効にする
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<%= f.submit "更新", class:"btn btn-default" %>
+				<%= link_to '削除', [:admin, @company], method: :delete, data: { confirm: '削除してよろしいですか？'} , class:"btn btn-danger" %>
+			<% end %>
+		</div>
+  </div>
+</div>
+
+<!--
+<h1>Editing Company</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [:admin, @company] %> |
+<%= link_to 'Back', admin_companies_path %>
+-->
