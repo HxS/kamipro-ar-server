@@ -46,6 +46,25 @@ class Api::V1::AppsController < ApplicationController
 		end
   end
 
+  def relations
+		app_id = params["id"]
+		app = App.find_by(id:app_id)
+		if app == nil
+			render_error "指定されたアプリが見つかりません"
+		else
+			relations = []
+			app.companies.where(enabled:true).each{|c|
+				character_id = c.character.id
+				c.markers.where(enabled:true).each{|m|
+					advertisings = []
+					advertisings.concat m.advertisings.where(enabled:true).pluck(:id)
+					relations.push({marker_id:m.id, character_id: character_id, advertisings:advertisings})
+				}
+			}
+			render json:relations
+		end
+  end
+
 	def impressions
 		app_id = params["id"]
 		user = User.find_by(uuid:params["uuid"])

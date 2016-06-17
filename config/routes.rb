@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 		namespace :v1 do
 			post '/signup' => 'users#signup'
 			get '/apps/:id/resources' => 'apps#resources'
+			get '/apps/:id/relations' => 'apps#relations'
 			get '/markers/:id/results' => 'markers#results'
 			post '/apps/:id/impressions' => 'apps#impressions'
 			post '/apps/:id/reaches' => 'apps#reaches'
