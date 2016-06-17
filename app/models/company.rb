@@ -1,7 +1,7 @@
 class Company < ActiveRecord::Base
+	has_many :apps_companies
+	has_many :apps, :through => :apps_companies
 	has_many :markers
 	has_many :staffs
-	has_many :advertisings
-	has_many :companies_characters
-	has_many :characters, :through => :companies_characters
+	belongs_to :character
 end

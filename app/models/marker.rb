@@ -1,5 +1,4 @@
 class Marker < ActiveRecord::Base
   belongs_to :company
-	has_many :impressions
-	has_many :reaches
+	has_many :marker
 end

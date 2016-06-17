@@ -1,4 +1,3 @@
 class Character < ActiveRecord::Base
-	has_many :impressions
-	has_many :reaches
+	has_many :companies
 end
