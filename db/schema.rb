@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617143105) do
+ActiveRecord::Schema.define(version: 20160617152829) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",           limit: 255
@@ -65,16 +65,6 @@ ActiveRecord::Schema.define(version: 20160617143105) do
   end
 
   add_index "companies", ["character_id"], name: "index_companies_on_character_id", using: :btree
-
-  create_table "companies_characters", force: :cascade do |t|
-    t.integer  "company_id",   limit: 4
-    t.integer  "character_id", limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "companies_characters", ["character_id"], name: "index_companies_characters_on_character_id", using: :btree
-  add_index "companies_characters", ["company_id"], name: "index_companies_characters_on_company_id", using: :btree
 
   create_table "impressions", force: :cascade do |t|
     t.integer  "advertising_id", limit: 4
@@ -132,8 +122,6 @@ ActiveRecord::Schema.define(version: 20160617143105) do
 
   add_foreign_key "apps_companies", "apps"
   add_foreign_key "apps_companies", "companies"
-  add_foreign_key "companies_characters", "characters"
-  add_foreign_key "companies_characters", "companies"
   add_foreign_key "impressions", "advertisings"
   add_foreign_key "impressions", "users"
   add_foreign_key "markers", "companies"
