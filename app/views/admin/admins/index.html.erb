@@ -16,7 +16,7 @@
         </thead>
         <tbody>
           <% @admins.each do |admin| %>
-            <tr data-href="admin-administrator-detail.html">
+            <tr data-href="<%= url_for [:admin, admin] %>">
               <td><%= admin.id %></td>
               <td><%= admin.name %></td>
               <td><%= admin.email %></td>
