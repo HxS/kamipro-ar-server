@@ -1,3 +1,36 @@
+<%= render "admin/header.erb" %>
+<div class="container content">
+  <div class="row">
+    <%= render "admin/sidebar.erb" %>
+    <div class="col-md-9">
+      <div class="container-fluid" align="right" style="margin-bottom: 20px;">
+				<%= link_to '新規追加', new_admin_admin_path, class:"btn btn-primary" %>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>名前</th>
+            <th>メールアドレス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @admins.each do |admin| %>
+            <tr data-href="admin-administrator-detail.html">
+              <td><%= admin.id %></td>
+              <td><%= admin.name %></td>
+              <td><%= admin.email %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%
+=begin
+%>
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Admins</h1>
@@ -29,3 +62,6 @@
 <br>
 
 <%= link_to 'New Admin', new_admin_admin_path %>
+<%
+=end
+%>
