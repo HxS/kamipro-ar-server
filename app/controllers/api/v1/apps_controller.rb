@@ -34,11 +34,15 @@ class Api::V1::AppsController < ApplicationController
 		else
 			characters = []
 			markers = []
-			app.companies.each{|c|
-				characters.concat c.characters.pluck_to_hash(:id, :name, :thumbnail_url, :asset_url, :updated_at)
-				markers.concat c.markers.pluck_to_hash(:id, :image_url, :updated_at)
+			advertisings = []
+			app.companies.where(enabled:true).each{|c|
+				characters.push c.character.attributes.select{|k,v| [:id, :name, :target_id, :updated_at].include? k.to_sym}
+				markers.concat c.markers.where(enabled:true).pluck_to_hash(:id, :target_id, :updated_at)
+				c.markers.each{|m|
+					advertisings.concat m.advertisings.where(enabled:true).pluck_to_hash(:id, :image_url, :link_url, :updated_at)
+				}
 			}
-			render json:{characters:characters, markers:markers}
+			render json:{characters:characters, markers:markers, advertisings:advertisings}
 		end
   end
 
