@@ -1,5 +1,6 @@
 class Admin::StaffsController < ApplicationController
   before_action :set_staff, only: [:show, :edit, :update, :destroy]
+  before_action :set_company
 
   # GET /staffs
   # GET /staffs.json
@@ -19,7 +20,6 @@ class Admin::StaffsController < ApplicationController
 
   # GET /staffs/1/edit
   def edit
-    @companies = Company.all
   end
 
   # POST /staffs
@@ -64,9 +64,12 @@ class Admin::StaffsController < ApplicationController
     def set_staff
       @staff = Staff.find(params[:id])
     end
+    def set_company
+      @companies = Company.all
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def staff_params
-      params.require(:staff).permit(:company_id, :email, :password, :password_confirmation)
+      params.require(:staff).permit(:name, :company_id, :email, :password, :password_confirmation)
     end
 end
