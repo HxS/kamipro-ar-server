@@ -32,7 +32,7 @@ class Admin::CompaniesController < ApplicationController
     respond_to do |format|
       if @company.save
         @company.apps.build
-        format.html { redirect_to action:"edit" }
+        format.html { redirect_to edit_admin_company_path(@company) }
         #format.html { redirect_to [:admin, @company], notice: 'Company was successfully created.' }
       else
         format.html { render :new }
