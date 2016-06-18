@@ -19,6 +19,7 @@ class Admin::StaffsController < ApplicationController
 
   # GET /staffs/1/edit
   def edit
+    @companies = Company.all
   end
 
   # POST /staffs
@@ -28,7 +29,8 @@ class Admin::StaffsController < ApplicationController
 
     respond_to do |format|
       if @staff.save
-        format.html { redirect_to [:admin, @staff], notice: 'Staff was successfully created.' }
+        format.html { redirect_to edit_admin_staff_path(@staff) }
+        #format.html { redirect_to [:admin, @staff], notice: 'Staff was successfully created.' }
       else
         format.html { render :new }
       end
@@ -40,6 +42,7 @@ class Admin::StaffsController < ApplicationController
   def update
     respond_to do |format|
       if @staff.update(staff_params)
+        format.html { redirect_to edit_admin_staff_path(@staff) }
         format.html { redirect_to [:admin, @staff], notice: 'Staff was successfully updated.' }
       else
         format.html { render :edit }
