@@ -1,5 +1,6 @@
 class Admin::CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_apps
 
   # GET /companies
   # GET /companies.json
@@ -15,13 +16,11 @@ class Admin::CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
-    @apps = App.all
     @company_app_ids = @company.apps.pluck(:id)
   end
 
   # GET /companies/1/edit
   def edit
-    @apps = App.all
     @company_app_ids = @company.apps.pluck(:id)
   end
 
@@ -67,6 +66,10 @@ class Admin::CompaniesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_company
       @company = Company.find(params[:id])
+    end
+
+    def set_apps
+      @apps = App.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
