@@ -1,5 +1,51 @@
+<% content_for :content do %>
+	<%= form_for([:admin, @company]) do |f| %>
+	  <table class="table">
+	    <thead>
+	      <tr>
+	        <th>項目</th>
+	        <th>内容</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+	        <th>名前</th>
+	        <td><%= f.text_field :name, class:"form-control" %></td>
+	      </tr>
+	      <tr>
+	        <th>有効/無効</th>
+	        <td>
+						<label><%= f.radio_button :enabled, 1, :checked => @company.enabled %>有効</label>
+						<label><%= f.radio_button :enabled, 0, :checked => !@company.enabled %>無効</label>
+	        </td>
+	      </tr>
+	      <tr>
+	        <th>アプリID</th>
+	        <td>
+						<%= f.collection_check_boxes(:app_ids, @apps, :id, :name, checked:@company_app_ids) do |b|%>
+							<div class="checkbox">
+								<%= b.label { b.check_box + b.text } %>
+							</div>
+						<% end %>
+	        </td>
+	      </tr>
+	    </tbody>
+	  </table>
+		<%= f.submit "登録", class:"btn btn-default" %>
+	<% end %>
+<% end %>
+<%= render :template => 'admin/frame' %>
+
+
+<%
+=begin
+%>
 <h1>New Company</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Back', admin_companies_path %>
+
+<%
+=end
+%>

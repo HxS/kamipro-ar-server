@@ -15,20 +15,25 @@ class Admin::CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
+		@apps = App.all
+		@company_app_ids = @company.apps.pluck(:id)
   end
 
   # GET /companies/1/edit
   def edit
+		@apps = App.all
+		@company_app_ids = @company.apps.pluck(:id)
   end
 
   # POST /companies
   # POST /companies.json
   def create
     @company = Company.new(company_params)
-
     respond_to do |format|
       if @company.save
-        format.html { redirect_to [:admin, @company], notice: 'Company was successfully created.' }
+				@company.apps.build
+        format.html { redirect_to action:"edit" }
+        #format.html { redirect_to [:admin, @company], notice: 'Company was successfully created.' }
       else
         format.html { render :new }
       end
@@ -40,7 +45,9 @@ class Admin::CompaniesController < ApplicationController
   def update
     respond_to do |format|
       if @company.update(company_params)
-        format.html { redirect_to [:admin, @company], notice: 'Company was successfully updated.' }
+				@company.apps.build
+        format.html { redirect_to action:"edit" }
+        #format.html { redirect_to [:admin, @company], notice: 'Company was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -64,6 +71,6 @@ class Admin::CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :disabled)
+      params.require(:company).permit(:name, :enabled, app_ids:[])
     end
 end
