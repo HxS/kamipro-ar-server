@@ -10,10 +10,10 @@ module Kamiproar
         begin
           begin
             @app.call(env)
-          rescue ActiveRecord::RecordNotFound
-            raise Exceptions::InternalServerError
-          rescue
-            raise Exceptions::InternalServerError
+          rescue ActiveRecord::RecordNotFound => e
+            raise Exceptions::NotFound, e
+          rescue => e
+            raise Exceptions::InternalServerError, e
           end
         rescue Exceptions::Base => e
           e.to_rack_response
@@ -51,6 +51,16 @@ module Kamiproar
     end
 
     class InternalServerError < Base
+    end
+
+    class NotFound < Base
+      def status_code
+        404
+      end
+
+      def error_message
+        message
+      end
     end
   end
 end
