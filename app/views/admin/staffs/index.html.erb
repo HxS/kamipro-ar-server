@@ -1,3 +1,36 @@
+<% content_for :content do %>
+  <div class="container-fluid" align="right" style="margin-bottom: 20px;">
+    <%= link_to '新規追加', new_admin_staff_path, class:"btn btn-primary" %>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>名前</th>
+        <th>所属企業</th>
+        <th>メールアドレス</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @staffs.each do |staff| %>
+        <tr>
+          <td><%= staff.id %></td>
+          <td><%= staff.name %></td>
+          <td><%= staff.company.name %></td>
+          <td><%= staff.email %></td>
+          <td align='right'>
+            <%= link_to '編集', edit_admin_staff_path(staff), class:"btn btn-default" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<%= render :template => 'admin/frame' %>
+<%
+=begin
+%>
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Staffs</h1>
@@ -31,3 +64,7 @@
 <br>
 
 <%= link_to 'New Staff', new_admin_staff_path %>
+
+<%
+=end
+%>
