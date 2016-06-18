@@ -1,5 +1,49 @@
+<%= render "admin/header.erb" %>
+<div class="container content">
+  <div class="row">
+    <%= render "admin/sidebar.erb" %>
+      <div class="col-md-9">
+				<%= form_for([:admin, @admin]) do |f| %>
+	        <table class="table">
+	          <thead>
+	            <tr>
+	              <th>項目</th>
+	              <th>内容</th>
+	            </tr>
+	          </thead>
+	          <tbody>
+	            <tr>
+	              <th>名前</th>
+	              <td><%= f.text_field :name, class:"form-control", placeholder:"Name" %></td>
+	            </tr>
+	            <tr>
+	              <th>メールアドレス</th>
+	              <td><%= f.text_field :email, class:"form-control", placeholder:"Email" %></td>
+	            </tr>
+	            <tr>
+	              <th>パスワード</th>
+	              <td><%= f.password_field :password, class:"form-control", placeholder:"Password" %></td>
+	            </tr>
+	            <tr>
+	              <th>パスワード（確認）</th>
+	              <td><%= f.password_field :password_confirmation, class:"form-control", placeholder:"Confirm Password" %></td>
+	            </tr>
+	          </tbody>
+	        </table>
+					<%= f.submit "作成", class:"btn btn-primary" %>
+				<% end %>
+      </div>
+  </div>
+</div>
+
+<%
+=begin
+%>
 <h1>New Admin</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Back', admin_admins_path %>
+<%
+=end
+%>
