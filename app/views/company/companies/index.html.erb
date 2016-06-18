@@ -2,34 +2,34 @@
 <div class="container content">
   <div class="row">
     <%= render 'admin/sidebar' %>
-		<div class="col-md-9">
-			<div class="container-fluid" align="right" style="margin-bottom: 20px;">
-				<%= link_to '新規追加', new_admin_company_path, class:"btn btn-primary" %>
-			</div>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>企業名</th>
-						<th>有効/無効</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-			    <% @companies.each do |company| %>
-						<tr>
-							<td><%= company.id %></td>
-							<td><%= company.name %></td>
-							<td><%= if company.disabled then "無効" else "有効" end%></td>
-							<td align='right'>
-								<%= link_to '編集', edit_admin_company_path(company), class:"btn btn-default" %>
-								<%= link_to '削除', [:admin, company], method: :delete, data: { confirm: '削除してよろしいですか？'} , class:"btn btn-danger" %>
-							</td>
-						</tr>
-			    <% end %>
-				</tbody>
-			</table>
-		</div>
+    <div class="col-md-9">
+      <div class="container-fluid" align="right" style="margin-bottom: 20px;">
+        <%= link_to '新規追加', new_admin_company_path, class:"btn btn-primary" %>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>企業名</th>
+            <th>有効/無効</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @companies.each do |company| %>
+            <tr>
+              <td><%= company.id %></td>
+              <td><%= company.name %></td>
+              <td><%= if company.disabled then "無効" else "有効" end%></td>
+              <td align='right'>
+                <%= link_to '編集', edit_admin_company_path(company), class:"btn btn-default" %>
+                <%= link_to '削除', [:admin, company], method: :delete, data: { confirm: '削除してよろしいですか？'} , class:"btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

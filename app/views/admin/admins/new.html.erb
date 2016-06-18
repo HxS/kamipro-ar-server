@@ -1,5 +1,5 @@
 <% content_for :content do %>
-	<%= form_for([:admin, @admin]) do |f| %>
+  <%= form_for([:admin, @admin]) do |f| %>
     <table class="table">
       <thead>
         <tr>
@@ -26,8 +26,8 @@
         </tr>
       </tbody>
     </table>
-		<%= f.submit "作成", class:"btn btn-primary" %>
-	<% end %>
+    <%= f.submit "作成", class:"btn btn-primary" %>
+  <% end %>
 <% end %>
 <%= render :template => 'admin/frame' %>
 <%

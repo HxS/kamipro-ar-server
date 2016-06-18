@@ -6,29 +6,29 @@ Rails.application.routes.draw do
     resources :markers
     resources :characters
     resources :companies
-		resources :staffs
-		resources :apps
-		resources :advertisings
+    resources :staffs
+    resources :apps
+    resources :advertisings
   end
 
 
   namespace :company do
-		resources :staffs
-		resources :advertisings
+    resources :staffs
+    resources :advertisings
     resources :markers
-		resources :advertisings
+    resources :advertisings
   end
 
-	namespace :api, { format: 'json' } do
-		namespace :v1 do
-			post '/signup' => 'users#signup'
-			get '/apps/:id/resources' => 'apps#resources'
-			get '/apps/:id/relations' => 'apps#relations'
-			get '/markers/:id/results' => 'markers#results'
-			post '/apps/:id/impressions' => 'apps#impressions'
-			post '/apps/:id/reaches' => 'apps#reaches'
-		end
-	end
+  namespace :api, { format: 'json' } do
+    namespace :v1 do
+      post '/signup' => 'users#signup'
+      get '/apps/:id/resources' => 'apps#resources'
+      get '/apps/:id/relations' => 'apps#relations'
+      get '/markers/:id/results' => 'markers#results'
+      post '/apps/:id/impressions' => 'apps#impressions'
+      post '/apps/:id/reaches' => 'apps#reaches'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

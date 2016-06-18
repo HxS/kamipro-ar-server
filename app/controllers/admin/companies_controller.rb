@@ -15,14 +15,14 @@ class Admin::CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
-		@apps = App.all
-		@company_app_ids = @company.apps.pluck(:id)
+    @apps = App.all
+    @company_app_ids = @company.apps.pluck(:id)
   end
 
   # GET /companies/1/edit
   def edit
-		@apps = App.all
-		@company_app_ids = @company.apps.pluck(:id)
+    @apps = App.all
+    @company_app_ids = @company.apps.pluck(:id)
   end
 
   # POST /companies
@@ -31,7 +31,7 @@ class Admin::CompaniesController < ApplicationController
     @company = Company.new(company_params)
     respond_to do |format|
       if @company.save
-				@company.apps.build
+        @company.apps.build
         format.html { redirect_to action:"edit" }
         #format.html { redirect_to [:admin, @company], notice: 'Company was successfully created.' }
       else
@@ -45,7 +45,7 @@ class Admin::CompaniesController < ApplicationController
   def update
     respond_to do |format|
       if @company.update(company_params)
-				@company.apps.build
+        @company.apps.build
         format.html { redirect_to action:"edit" }
         #format.html { redirect_to [:admin, @company], notice: 'Company was successfully updated.' }
       else
