@@ -1,5 +1,6 @@
 class Admin::MarkersController < ApplicationController
   before_action :set_marker, only: [:show, :edit, :update, :destroy]
+  before_action :set_companies
 
   # GET /markers
   # GET /markers.json
@@ -40,7 +41,8 @@ class Admin::MarkersController < ApplicationController
   def update
     respond_to do |format|
       if @marker.update(marker_params)
-        format.html { redirect_to [:admin, @marker], notice: 'Marker was successfully updated.' }
+        format.html { redirect_to action:"edit" }
+        #format.html { redirect_to [:admin, @marker], notice: 'Marker was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -62,9 +64,12 @@ class Admin::MarkersController < ApplicationController
     def set_marker
       @marker = Marker.find(params[:id])
     end
+    def set_companies
+      @companies = Company.all
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def marker_params
-      params.require(:marker).permit(:company_id, :image_url)
+      params.require(:marker).permit(:company_id, :target_id, :enabled, :image, :image_cache)
     end
 end

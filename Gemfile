@@ -29,6 +29,7 @@ gem "pluck_to_hash"
 
 gem "rack-cors"
 
+gem "carrierwave"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
