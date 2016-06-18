@@ -1,35 +1,30 @@
-<%= render "admin/header.erb" %>
-<div class="container content">
-  <div class="row">
-    <%= render "admin/sidebar.erb" %>
-		<div class="col-md-9">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>項目</th>
-						<th>内容</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>ID</th>
-						<td><%= @admin.id %></td>
-					</tr>
-					<tr>
-						<th>名前</th>
-						<td><%= @admin.name %></td>
-					</tr>
-					<tr>
-						<th>メールアドレス</th>
-						<td><%= @admin.email %></td>
-					</tr>
-				</tbody>
-			</table>
-			<%= button_to '削除', [:admin, @admin], method: :delete, data: { confirm: '本当に削除しますか？' }, class:"btn btn-danger" %>
-		</div>
-	</div>
-</div>
+<% content_for :content do %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>項目</th>
+				<th>内容</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>ID</th>
+				<td><%= @admin.id %></td>
+			</tr>
+			<tr>
+				<th>名前</th>
+				<td><%= @admin.name %></td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td><%= @admin.email %></td>
+			</tr>
+		</tbody>
+	</table>
+	<%= button_to '削除', [:admin, @admin], method: :delete, data: { confirm: '本当に削除しますか？' }, class:"btn btn-danger" %>
 
+<% end %>
+<%= render :template => 'admin/frame' %>
 <%
 =begin
 %>
