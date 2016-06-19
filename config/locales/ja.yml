@@ -7,6 +7,10 @@ ja:
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
+      company:
+        name: "名前"
+        character_id: "キャラクターID"
+        enabled: "有効/無効"
 
     errors:
       messages:

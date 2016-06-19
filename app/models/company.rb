@@ -6,4 +6,8 @@ class Company < ActiveRecord::Base
   belongs_to :character
 
   accepts_nested_attributes_for :apps_companies, :allow_destroy => true
+
+  validates :name, presence: true
+  validates :character_id, presence: true
+  validates :enabled, presence: true
 end
