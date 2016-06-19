@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160619075438) do
+ActiveRecord::Schema.define(version: 20160619084634) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",           limit: 255
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160619075438) do
     t.boolean  "enabled"
   end
 
-  add_index "advertisings", ["marker_id"], name: "index_advertisings_on_marker_id", using: :btree
+  add_index "advertisings", ["marker_id"], name: "fk_rails_4d5226afb6", using: :btree
 
   create_table "apps", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 20160619075438) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "advertisings", "markers"
   add_foreign_key "apps_companies", "apps"
   add_foreign_key "apps_companies", "companies"
   add_foreign_key "impressions", "advertisings"
