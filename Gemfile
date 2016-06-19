@@ -30,6 +30,11 @@ gem "pluck_to_hash"
 gem "rack-cors"
 
 gem "carrierwave"
+
+gem "vws", '1.2.4'
+
+gem 'fastimage'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -41,8 +41,12 @@ class Admin::MarkersController < ApplicationController
   def update
     respond_to do |format|
       if @marker.update(marker_params)
-        format.html { redirect_to action:"edit" }
-        #format.html { redirect_to [:admin, @marker], notice: 'Marker was successfully updated.' }
+        if Vuforia.upload @marker
+          format.html { redirect_to action:"edit" }
+          #format.html { redirect_to [:admin, @marker], notice: 'Marker was successfully updated.' }
+        else
+          format.html { render :edit }
+        end
       else
         format.html { render :edit }
       end
