@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160619142639) do
+ActiveRecord::Schema.define(version: 20160619145824) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",           limit: 255
@@ -78,9 +78,11 @@ ActiveRecord::Schema.define(version: 20160619142639) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.datetime "displayed_at"
+    t.integer  "app_id",         limit: 4
   end
 
   add_index "impressions", ["advertising_id"], name: "index_impressions_on_advertising_id", using: :btree
+  add_index "impressions", ["app_id"], name: "fk_rails_16ffdc76d8", using: :btree
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
   create_table "markers", force: :cascade do |t|
@@ -104,9 +106,11 @@ ActiveRecord::Schema.define(version: 20160619142639) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.datetime "displayed_at"
+    t.integer  "app_id",         limit: 4
   end
 
   add_index "reaches", ["advertising_id"], name: "index_reaches_on_advertising_id", using: :btree
+  add_index "reaches", ["app_id"], name: "fk_rails_19046772d7", using: :btree
   add_index "reaches", ["user_id"], name: "index_reaches_on_user_id", using: :btree
 
   create_table "staffs", force: :cascade do |t|
@@ -131,9 +135,11 @@ ActiveRecord::Schema.define(version: 20160619142639) do
   add_foreign_key "apps_companies", "apps"
   add_foreign_key "apps_companies", "companies"
   add_foreign_key "impressions", "advertisings"
+  add_foreign_key "impressions", "apps"
   add_foreign_key "impressions", "users"
   add_foreign_key "markers", "companies"
   add_foreign_key "reaches", "advertisings"
+  add_foreign_key "reaches", "apps"
   add_foreign_key "reaches", "users"
   add_foreign_key "staffs", "companies"
 end
