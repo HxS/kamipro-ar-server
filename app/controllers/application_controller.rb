@@ -9,16 +9,16 @@ class ApplicationController < ActionController::Base
     render json: { message: '内部エラー' }, status: 500
   end
 
-  def authenticate
+  def authenticate_staff
     redirect_to sign_in_company_staffs_path unless session[:id]
   end
 
-  def current_user
+  def current_staff
     if session[:id]
       Staff.find_by(session[:id])
     end
   end
 
-  helper_method :current_user
+  helper_method :current_staff
 
 end

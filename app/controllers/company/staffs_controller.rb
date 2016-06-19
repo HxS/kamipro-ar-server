@@ -1,6 +1,6 @@
 class Company::StaffsController < ApplicationController
   before_action :set_staff, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate, except: [:sign_in, :session_create]
+  before_action :authenticate_staff, except: [:sign_in, :session_create]
 
   # GET /staffs
   # GET /staffs.json
@@ -75,7 +75,7 @@ class Company::StaffsController < ApplicationController
   end
 
   def sign_out
-    if current_user
+    if current_staff
       session[:id] = nil
     end
     redirect_to company_staffs_path
