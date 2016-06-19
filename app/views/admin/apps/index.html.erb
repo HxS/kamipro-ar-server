@@ -7,6 +7,8 @@
       <tr>
         <th>#</th>
         <th>アプリ名</th>
+        <th>Android</th>
+        <th>iOS</th>
         <th>補足</th>
         <th></th>
       </tr>
@@ -16,6 +18,8 @@
         <tr>
           <td><%= app.id %></td>
           <td><%= app.name %></td>
+          <td><%= app.android_version %></td>
+          <td><%= app.ios_version %></td>
           <td><%= app.memo %></td>
           <td align='right'>
             <%= link_to '編集', edit_admin_app_path(app), class:"btn btn-default" %>

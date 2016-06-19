@@ -65,6 +65,6 @@ class Admin::AppsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def app_params
-      params.require(:app).permit(:name, :memo)
+      params.require(:app).permit(:name, :memo, :android_version, :ios_version)
     end
 end

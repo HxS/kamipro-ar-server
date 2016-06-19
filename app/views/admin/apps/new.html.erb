@@ -22,6 +22,14 @@
           <td><%= f.text_field :name, class:"form-control", placeholder:"Name" %></td>
         </tr>
         <tr>
+          <th>Android</th>
+          <td><%= f.text_field :android_version, class:"form-control", placeholder:"1.0" %></td>
+        </tr>
+        <tr>
+          <th>iOS</th>
+          <td><%= f.text_field :ios_version, class:"form-control", placeholder:"1.0" %></td>
+        </tr>
+        <tr>
           <th>補足</th>
           <td>
             <%= f.text_area :memo, class:"form-control" %>
