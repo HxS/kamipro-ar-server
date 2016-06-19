@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     resources :staffs
     resources :advertisings
     resources :markers
-    resources :advertisings
   end
 
   namespace :api, { format: 'json' } do
