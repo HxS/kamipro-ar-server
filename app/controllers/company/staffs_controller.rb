@@ -40,8 +40,8 @@ class Company::StaffsController < ApplicationController
   # PATCH/PUT /staffs/1.json
   def update
     respond_to do |format|
-      if @staff.update(staff_params)
-        format.html { redirect_to [:company, @staff], notice: '更新しました' }
+      if staff_params[:password] == staff_params[:password_confirmation] && @staff.update(staff_params)
+        format.html { redirect_to company_staffs_path, notice: '更新しました' }
       else
         format.html { render :edit }
       end
@@ -52,6 +52,7 @@ class Company::StaffsController < ApplicationController
   # DELETE /staffs/1.json
   def destroy
     @staff.destroy
+    session[:id] = nil
     respond_to do |format|
       format.html { redirect_to admin_staffs_url, notice: 'スタッフを削除しました' }
     end

@@ -36,6 +36,10 @@
         <th>パスワード</th>
         <td><%= f.password_field :password, class: 'form-control', placeholder: 'Password' %></td>
       </tr>
+      <tr>
+        <th>パスワード(確認用)</th>
+        <td><%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password' %></td>
+      </tr>
       </tbody>
     </table>
         <% if controller.action_name == 'new' %>
