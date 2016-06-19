@@ -1,5 +1,6 @@
 class Company::MarkersController < ApplicationController
   before_action :set_marker, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate
 
   # GET /markers
   # GET /markers.json

@@ -13,7 +13,13 @@ Rails.application.routes.draw do
 
 
   namespace :company do
-    resources :staffs
+    resources :staffs do
+      collection do
+        get :sign_in
+        post 'session_create'
+        delete :sign_out
+      end
+    end
     resources :advertisings
     resources :markers
   end

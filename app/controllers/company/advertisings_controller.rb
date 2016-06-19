@@ -1,5 +1,6 @@
 class Company::AdvertisingsController < ApplicationController
   before_action :set_advertising, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate
 
   # GET /advertisings
   # GET /advertisings.json

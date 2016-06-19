@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kamiproar</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="login">
+    <% if notice %>
+      <div class="container">
+        <div class="alert alert-success" role="alert"><%= notice %></div>
+      </div>
+    <% end %>
+    <%= form_tag session_create_company_staffs_path, class: 'form-signin' do %>
+      <h2 class="form-signin-heading">sagascope ログイン</h2>
+      <label class="sr-only">Login ID</label>
+      <input type="text" class="form-control" placeholder="Email" required autofocus name="session[email]">
+      <label class="sr-only">Password</label>
+      <input type="password" class="form-control" placeholder="Password" required name="session[password]">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <% end %>
+  </body>
+</html>

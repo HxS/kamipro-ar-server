@@ -1,5 +1,6 @@
 class Company::StaffsController < ApplicationController
   before_action :set_staff, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, except: [:sign_in, :session_create]
 
   # GET /staffs
   # GET /staffs.json
@@ -54,6 +55,30 @@ class Company::StaffsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_staffs_url, notice: 'スタッフを削除しました' }
     end
+  end
+
+  def sign_in
+    render layout: nil
+  end
+
+  def session_create
+    login_params = params.require(:session).permit(:email, :password)
+    email, password = login_params[:email], login_params[:password]
+    p email
+    staff = Staff.find_by_email(email)
+    if staff && staff.authenticate(password)
+      session[:id] = staff.id
+      redirect_to company_staff_path(staff), notice: 'ログインしました'
+    else
+      render json: staff
+    end
+  end
+
+  def sign_out
+    if current_user
+      session[:id] = nil
+    end
+    redirect_to company_staffs_path
   end
 
   private
