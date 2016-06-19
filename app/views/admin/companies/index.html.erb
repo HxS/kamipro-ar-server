@@ -7,6 +7,7 @@
       <tr>
         <th>#</th>
         <th>企業名</th>
+        <th>キャラクタ名</th>
         <th>有効/無効</th>
         <th></th>
       </tr>
@@ -16,6 +17,7 @@
         <tr>
           <td><%= company.id %></td>
           <td><%= company.name %></td>
+          <td><%= company.character.name %></td>
           <td><%= if company.enabled then "有効" else "無効" end %></td>
           <td align='right'>
             <%= link_to '編集', edit_admin_company_path(company), class:"btn btn-default" %>

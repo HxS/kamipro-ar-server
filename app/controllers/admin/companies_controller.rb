@@ -2,6 +2,7 @@ class Admin::CompaniesController < ApplicationController
   before_action :authenticate_admin
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   before_action :set_apps
+  before_action :set_character
 
   # GET /companies
   # GET /companies.json
@@ -73,8 +74,12 @@ class Admin::CompaniesController < ApplicationController
       @apps = App.all
     end
 
+    def set_character
+      @characters = Character.all
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :enabled, app_ids:[])
+      params.require(:company).permit(:name, :enabled, :character_id, app_ids:[])
     end
 end

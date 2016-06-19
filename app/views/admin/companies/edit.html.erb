@@ -26,6 +26,10 @@
           <td><%= f.text_field :name, class:"form-control" %></td>
         </tr>
         <tr>
+          <th>キャラクタ名</th>
+          <td><%= f.collection_select :character_id, @characters, :id,  :name, {}, class:"form-control" %></td>
+        </tr>
+        <tr>
           <th>有効/無効</th>
           <td>
             <label><%= f.radio_button :enabled, 1, :checked => @company.enabled %>有効</label>
