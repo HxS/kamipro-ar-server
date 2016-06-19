@@ -1,5 +1,50 @@
+<% content_for :content do %>
+  <%= form_for([:admin, @marker]) do |f| %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>企業</th>
+          <td>
+            <%= f.collection_select :company_id, @companies, :id,  :name, {}, class:"form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <th>有効/無効</th>
+          <td>
+            <label><%= f.radio_button :enabled, 1, :checked => @marker.enabled %>有効</label>
+            <label><%= f.radio_button :enabled, 0, :checked => !@marker.enabled %>無効</label>
+          </td>
+        </tr>
+        <tr>
+          <th>マーカー画像</th>
+          <td>
+            <%= image_tag @marker.image.url %><br>
+            <%= f.file_field :image %>
+            <%= f.hidden_field :image_cache %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <%= f.submit "作成", class:"btn btn-primary" %>
+  <% end %>
+<% end %>
+<%= render :template => 'admin/frame' %>
+
+<%
+=begin
+%>
+
 <h1>New Marker</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Back', admin_markers_path %>
+<%
+=end
+%>
