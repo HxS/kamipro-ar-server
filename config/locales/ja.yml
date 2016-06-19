@@ -17,6 +17,11 @@ ja:
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
+      marker:
+        name: "名前"
+        company_id: "企業"
+        enabled: "有効/無効"
+        image: "マーカー画像"
 
 
     errors:

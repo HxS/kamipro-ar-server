@@ -4,4 +4,9 @@ class Marker < ActiveRecord::Base
   has_many :advertisings
 
   mount_uploader :image, MarkerImageUploader
+
+
+  validates :name, presence: true
+  validates :company_id, presence: true
+  validates :image, presence: true
 end
