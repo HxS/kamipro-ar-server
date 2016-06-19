@@ -30,7 +30,7 @@ class Admin::MarkersController < ApplicationController
     respond_to do |format|
       if @marker.save
         if Vuforia.upload @marker
-          format.html { redirect_to [:admin, @marker], notice: 'Marker was successfully created.' }
+          format.html { redirect_to admin_markers_url }
         else
           format.html { render :edit }
         end
