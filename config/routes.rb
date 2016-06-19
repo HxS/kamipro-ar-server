@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    resources :admins
-    resources :markers
-    resources :characters
-    resources :companies
-    resources :staffs
-    resources :apps
-    resources :advertisings
+    resources :admins, :except => [:edit]
+    resources :markers, :except => [:show]
+    resources :characters, :except => [:show]
+    resources :companies, :except => [:show]
+    resources :staffs, :except => [:show]
+    resources :apps, :except => [:show]
+    resources :advertisings, :except => [:show]
     get '/' => 'welcome#index'
     get '/signin' => 'sessions#signin'
     post '/signin' => 'sessions#create'
