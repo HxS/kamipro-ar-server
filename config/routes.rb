@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :apps
     resources :advertisings
     get '/' => 'welcome#index'
+    get '/signin' => 'sessions#signin'
+    post '/signin' => 'sessions#create'
+    get '/signout' => 'sessions#signout'
   end
 
 
