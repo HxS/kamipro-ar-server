@@ -11,6 +11,13 @@ ja:
         name: "名前"
         character_id: "キャラクターID"
         enabled: "有効/無効"
+      staff:
+        name: "名前"
+        company_id: "所属企業"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+
 
     errors:
       messages:
