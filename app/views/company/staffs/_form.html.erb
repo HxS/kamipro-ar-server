@@ -1,10 +1,11 @@
 <% content_for :content do %>
   <%= form_for([:company, @staff]) do |f| %>
-    <%# TODO: error message %>
-    <div class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      メッセージはこんな感じで
-    </div>
+    <% if notice %>
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= notice %>
+      </div>
+    <% end %>
     <table class="table">
       <thead>
       <tr>
@@ -37,8 +38,12 @@
       </tr>
       </tbody>
     </table>
-    <%= f.submit '更新', class: 'btn btn-default' %>
-    <%= link_to '削除', company_staff_path(@staff), method: :delete, class: 'btn btn-danger' %>
+        <% if controller.action_name == 'new' %>
+          <%= f.submit '作成', class: 'btn btn-default' %>
+        <% else %>
+          <%= f.submit '更新', class: 'btn btn-default' %>
+          <%= link_to '削除', company_staff_path(@staff), method: :delete, class: 'btn btn-danger' %>
+        <% end %>
   <% end %>
 <% end %>
 <%= render template: 'company/frame' %>

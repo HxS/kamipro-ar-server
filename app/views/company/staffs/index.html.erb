@@ -1,6 +1,6 @@
 <% content_for :content do %>
   <div class="container-fluid" align="right">
-    <button type="button" class="btn btn-primary">新規追加</button>
+    <%= link_to '新規追加', new_company_staff_path, class: 'btn btn-primary' %>
   </div>
   <table class="table table-hover">
     <thead>
@@ -12,13 +12,13 @@
     </tr>
     </thead>
     <tbody>
-      <% @staffs.each_with_index do |staff, i| %>
+      <% @staffs.each do |staff| %>
         <tr>
-          <td><%= i %></td>
+          <td><%= staff.id %></td>
           <td><%= staff.name %></td>
           <td><%= staff.email %></td>
           <td align="right">
-            <%= link_to '編集', company_staff_path(staff), {class: 'btn btn-default'} %>
+            <%= link_to '編集', edit_company_staff_path(staff), {class: 'btn btn-default'} %>
           </td>
         </tr>
       <% end %>

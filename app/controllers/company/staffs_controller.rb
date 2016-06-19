@@ -28,7 +28,7 @@ class Company::StaffsController < ApplicationController
 
     respond_to do |format|
       if @staff.save
-        format.html { redirect_to [:admin, @staff], notice: 'Staff was successfully created.' }
+        format.html { redirect_to [:company, @staff], notice: '作成しました' }
       else
         format.html { render :new }
       end
@@ -40,7 +40,7 @@ class Company::StaffsController < ApplicationController
   def update
     respond_to do |format|
       if @staff.update(staff_params)
-        format.html { redirect_to [:company, @staff], notice: 'Staff was successfully updated.' }
+        format.html { redirect_to [:company, @staff], notice: '更新しました' }
       else
         format.html { render :edit }
       end
@@ -52,7 +52,7 @@ class Company::StaffsController < ApplicationController
   def destroy
     @staff.destroy
     respond_to do |format|
-      format.html { redirect_to admin_staffs_url, notice: 'Staff was successfully destroyed.' }
+      format.html { redirect_to admin_staffs_url, notice: 'スタッフを削除しました' }
     end
   end
 
@@ -64,6 +64,6 @@ class Company::StaffsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def staff_params
-      params.require(:staff).permit(:company_id, :email, :password, :password_confirmation)
+      params.require(:staff).permit(:company_id, :name, :email, :password, :password_confirmation)
     end
 end
