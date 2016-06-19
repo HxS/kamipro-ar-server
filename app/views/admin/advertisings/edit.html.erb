@@ -19,6 +19,15 @@
       })
     })
   </script>
+  <% if @advertising.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <ul>
+      <% @advertising.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= form_for([:admin, @advertising]) do |f| %>
     <table class="table">
       <thead>
