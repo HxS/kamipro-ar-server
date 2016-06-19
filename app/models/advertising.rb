@@ -1,7 +1,7 @@
 class Advertising < ActiveRecord::Base
   belongs_to :marker
-  has_many :impressions
-  has_many :reaches
+  has_many :impressions, :dependent => :destroy
+  has_many :reaches, :dependent => :destroy
 
   mount_uploader :image, AdvertisingImageUploader
 end
