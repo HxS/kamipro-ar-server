@@ -15,7 +15,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <p class="navbar-text navbar-right">
-        <%= current_user.company.name + "社 " + current_user.name + "さん" %>
+        <%= current_user.company.name + " " + current_user.name + "様" %>
         <%= link_to 'ログアウト', sign_out_company_staffs_path, method: :delete, class: 'navbar-link' %>
       </p>
     </div><!-- /.navbar-collapse -->
