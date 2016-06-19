@@ -97,12 +97,12 @@ private
     ios_app_version = request.headers["X-KAMIPRO-IOS-VERSION"]
     if android_app_version
       if @app.android_version == "" || Gem::Version.new(android_app_version) < Gem::Version.new(@app.android_version)
-        render_error "アプリを更新してください"
+        render_error "アプリを更新してください", 412
         return false
       end
     elsif ios_app_version
       if @app.ios_version == "" || Gem::Version.new(ios_app_version) < Gem::Version.new(@app.ios_version)
-        render_error "アプリを更新してください"
+        render_error "アプリを更新してください", 412
         return false
       end
     else
