@@ -4,4 +4,9 @@ class Advertising < ActiveRecord::Base
   has_many :reaches, :dependent => :destroy
 
   mount_uploader :image, AdvertisingImageUploader
+
+
+  validates :link, presence: true
+  validates :image, presence: true
+  validates :marker_id, presence: true
 end

@@ -25,7 +25,11 @@ ja:
       character:
         name: "名前"
         thumbnail: "サムネイル"
-
+      advertising:
+        link: "リンク先"
+        image: "広告バナー"
+        marker_id: "マーカー"
+        enabled: "有効/無効"
 
 
     errors:
