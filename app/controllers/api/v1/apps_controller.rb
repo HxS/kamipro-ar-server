@@ -45,6 +45,7 @@ class Api::V1::AppsController < ApplicationController
       save_params[k] = params[k].presence
     }
     save_params[:displayed_at] = Time.now
+    save_params[:app_id] = @app.id
 
     unless Advertising.find_by(id:save_params[:advertising_id])
       render_error "指定された広告が存在しません"
@@ -71,6 +72,7 @@ class Api::V1::AppsController < ApplicationController
       save_params[k] = params[k].presence
     }
     save_params[:displayed_at] = Time.now
+    save_params[:app_id] = @app.id
     unless Advertising.find_by(id:save_params[:advertising_id])
       render_error "指定された広告が存在しません"
       return
