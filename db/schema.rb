@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160619070104) do
+ActiveRecord::Schema.define(version: 20160619075438) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",           limit: 255
@@ -86,9 +86,11 @@ ActiveRecord::Schema.define(version: 20160619070104) do
     t.datetime "updated_at",             null: false
     t.boolean  "enabled"
     t.string   "target_id",  limit: 255
+    t.string   "name",       limit: 255
   end
 
   add_index "markers", ["company_id"], name: "index_markers_on_company_id", using: :btree
+  add_index "markers", ["name"], name: "index_markers_on_name", unique: true, using: :btree
 
   create_table "reaches", force: :cascade do |t|
     t.integer  "advertising_id", limit: 4
