@@ -1,33 +1,44 @@
-<%= form_for([:admin, @staff]) do |f| %>
-  <% if @staff.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
-
-      <ul>
-      <% @staff.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<% content_for :content do %>
+  <%= form_for([:company, @staff]) do |f| %>
+    <%# TODO: error message %>
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      メッセージはこんな感じで
     </div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>項目</th>
+        <th>内容</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if controller.action_name == 'edit' %>
+        <tr>
+          <th>ID</th>
+          <td><%= @staff.id %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <th>名前</th>
+        <% if controller.action_name == 'new' %>
+          <td><%= f.text_field :name, class: 'form-control' %></td>
+        <% else %>
+          <td><%= @staff.name %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= f.email_field :email, class: 'form-control', placeholder: 'Email' %></td>
+      </tr>
+      <tr>
+        <th>パスワード</th>
+        <td><%= f.password_field :password, class: 'form-control', placeholder: 'Password' %></td>
+      </tr>
+      </tbody>
+    </table>
+    <%= f.submit '更新', class: 'btn btn-default' %>
+    <%= link_to '削除', company_staff_path(@staff), method: :delete, class: 'btn btn-danger' %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :company_id %><br>
-    <%= f.number_field :company_id %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.text_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.text_field :password_confirmation %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+<%= render template: 'company/frame' %>
