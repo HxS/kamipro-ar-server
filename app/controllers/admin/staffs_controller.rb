@@ -29,7 +29,7 @@ class Admin::StaffsController < ApplicationController
 
     respond_to do |format|
       if @staff.save
-        format.html { redirect_to edit_admin_staff_path(@staff), notice: '作成しました' }
+        format.html { redirect_to admin_staffs_url, notice: '作成しました' }
         #format.html { redirect_to [:admin, @staff], notice: 'Staff was successfully created.' }
       else
         format.html { render :new }

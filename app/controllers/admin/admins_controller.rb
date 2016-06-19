@@ -25,7 +25,7 @@ class Admin::AdminsController < ApplicationController
 
     respond_to do |format|
       if @admin.save
-        format.html { redirect_to [:admin, @admin], notice: '作成しました' }
+        format.html { redirect_to admin_admins_url, notice: '作成しました' }
         #format.json { render :show, status: :created, location: @admin }
       else
         format.html { render :new }

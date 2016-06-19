@@ -43,7 +43,7 @@ class Admin::AdvertisingsController < ApplicationController
   def update
     respond_to do |format|
       if @advertising.update(advertising_params)
-        format.html { redirect_to action:"edit", notice: '更新しました' }
+        format.html { redirect_to edit_admin_advertising_path(@advertising), notice: '更新しました' }
         #format.html { redirect_to [:admin, @advertising], notice: 'Advertising was successfully updated.' }
       else
         format.html { render :edit }
