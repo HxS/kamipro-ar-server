@@ -26,7 +26,7 @@
           <td><%= f.text_field :name, class:"form-control" %></td>
         </tr>
         <tr>
-          <th>キャラクタ名</th>
+          <th>キャラクター名</th>
           <td><%= f.collection_select :character_id, @characters, :id,  :name, {}, class:"form-control" %></td>
         </tr>
         <tr>
