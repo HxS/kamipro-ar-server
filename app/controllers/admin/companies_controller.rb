@@ -31,7 +31,7 @@ class Admin::CompaniesController < ApplicationController
     respond_to do |format|
       if @company.save
         @company.apps.build
-        format.html { redirect_to edit_admin_company_path(@company) }
+        format.html { redirect_to admin_companies_url, notice: '作成しました' }
         #format.html { redirect_to [:admin, @company], notice: 'Company was successfully created.' }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class Admin::CompaniesController < ApplicationController
     respond_to do |format|
       if @company.update(company_params)
         @company.apps.build
-        format.html { redirect_to action:"edit" }
+        format.html { redirect_to edit_admin_company_path(@company), notice: '更新しました' }
         #format.html { redirect_to [:admin, @company], notice: 'Company was successfully updated.' }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class Admin::CompaniesController < ApplicationController
   def destroy
     @company.destroy
     respond_to do |format|
-      format.html { redirect_to admin_companies_url, notice: 'Company was successfully destroyed.' }
+      format.html { redirect_to admin_companies_url, notice: '削除しました' }
     end
   end
 

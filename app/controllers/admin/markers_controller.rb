@@ -30,7 +30,7 @@ class Admin::MarkersController < ApplicationController
     respond_to do |format|
       if @marker.save
         if Vuforia.upload @marker
-          format.html { redirect_to admin_markers_url }
+          format.html { redirect_to admin_markers_url, notice: '作成しました' }
         else
           format.html { render :edit }
         end
@@ -46,7 +46,7 @@ class Admin::MarkersController < ApplicationController
     respond_to do |format|
       if @marker.update(marker_params)
         if Vuforia.upload @marker
-          format.html { redirect_to action:"edit" }
+          format.html { redirect_to edit_admin_marker_path(@marker), notice: '更新しました' }
           #format.html { redirect_to [:admin, @marker], notice: 'Marker was successfully updated.' }
         else
           format.html { render :edit }
@@ -64,7 +64,7 @@ class Admin::MarkersController < ApplicationController
     @marker.destroy
     Vuforia.delete target_id
     respond_to do |format|
-      format.html { redirect_to admin_markers_url, notice: 'Marker was successfully destroyed.' }
+      format.html { redirect_to admin_markers_url, notice: '削除しました' }
       format.json { head :no_content }
     end
   end

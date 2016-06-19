@@ -29,7 +29,7 @@ class Admin::StaffsController < ApplicationController
 
     respond_to do |format|
       if @staff.save
-        format.html { redirect_to edit_admin_staff_path(@staff) }
+        format.html { redirect_to admin_staffs_url, notice: '作成しました' }
         #format.html { redirect_to [:admin, @staff], notice: 'Staff was successfully created.' }
       else
         format.html { render :new }
@@ -42,8 +42,7 @@ class Admin::StaffsController < ApplicationController
   def update
     respond_to do |format|
       if @staff.update(staff_params)
-        format.html { redirect_to edit_admin_staff_path(@staff) }
-        format.html { redirect_to [:admin, @staff], notice: 'Staff was successfully updated.' }
+        format.html { redirect_to edit_admin_staff_path(@staff), notice: '更新しました' }
       else
         format.html { render :edit }
       end
@@ -55,7 +54,7 @@ class Admin::StaffsController < ApplicationController
   def destroy
     @staff.destroy
     respond_to do |format|
-      format.html { redirect_to admin_staffs_url, notice: 'Staff was successfully destroyed.' }
+      format.html { redirect_to admin_staffs_url, notice: '削除しました' }
     end
   end
 

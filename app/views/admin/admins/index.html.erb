@@ -12,10 +12,13 @@
     </thead>
     <tbody>
       <% @admins.each do |admin| %>
-        <tr data-href="<%= url_for [:admin, admin] %>">
+        <tr>
           <td><%= admin.id %></td>
           <td><%= admin.name %></td>
           <td><%= admin.email %></td>
+          <td align='right'>
+            <%= link_to '詳細', [:admin, admin], class:"btn btn-default" %>
+          </td>
         </tr>
       <% end %>
     </tbody>

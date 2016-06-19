@@ -28,7 +28,7 @@ class Admin::CharactersController < ApplicationController
 
     respond_to do |format|
       if @character.save
-        format.html { redirect_to action:"index" }
+        format.html { redirect_to admin_characters_url, notice: '作成しました' }
         #format.html { redirect_to [:admin, @character], notice: 'Character was successfully created.' }
       else
         format.html { render :new }
@@ -41,7 +41,7 @@ class Admin::CharactersController < ApplicationController
   def update
     respond_to do |format|
       if @character.update(character_params)
-        format.html { redirect_to action:"edit" }
+        format.html { redirect_to edit_admin_character_path(@character), notice: '更新しました' }
         #format.html { redirect_to [:admin, @character], notice: 'Character was successfully updated.' }
       else
         format.html { render :edit }
@@ -54,7 +54,7 @@ class Admin::CharactersController < ApplicationController
   def destroy
     @character.destroy
     respond_to do |format|
-      format.html { redirect_to admin_characters_url, notice: 'Character was successfully destroyed.' }
+      format.html { redirect_to admin_characters_url, notice: '削除しました' }
     end
   end
 
