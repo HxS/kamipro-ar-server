@@ -28,7 +28,7 @@
         <tr>
           <th>マーカー画像</th>
           <td>
-            <img src="<%= @marker.image.url %>"><br>
+            <%= image_tag @marker.image.url %><br>
             <%= f.file_field :image %>
             <%= f.hidden_field :image_cache %>
           </td>

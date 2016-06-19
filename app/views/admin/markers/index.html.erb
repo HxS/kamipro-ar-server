@@ -18,7 +18,7 @@
           <td><%= marker.id %></td>
           <td><%= marker.company.name %></td>
           <td><%= if marker.enabled then "有効" else "無効" end %></td>
-          <td><img src="<%= marker.image_url %>"></td>
+          <td><%= image_tag marker.image.url %></td>
           <td align='right'>
             <%= link_to '編集', edit_admin_marker_path(marker), class:"btn btn-default" %>
           </td>
