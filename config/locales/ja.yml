@@ -22,6 +22,10 @@ ja:
         company_id: "企業"
         enabled: "有効/無効"
         image: "マーカー画像"
+      character:
+        name: "名前"
+        thumbnail: "サムネイル"
+
 
 
     errors:
