@@ -1,6 +1,45 @@
+<% content_for :content do %>
+  <%= form_for([:admin, @app]) do |f| %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>ID</th>
+          <td><%= @app.id %></td>
+        </tr>
+        <tr>
+          <th>アプリ名</th>
+          <td><%= f.text_field :name, class:"form-control", placeholder:"Name" %></td>
+        </tr>
+        <tr>
+          <th>補足</th>
+          <td>
+            <%= f.text_area :memo, class:"form-control" %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <%= f.submit "更新", class:"btn btn-default" %>
+    <%= link_to '削除', [:admin, @app], method: :delete, data: { confirm: '本当に削除しますか？' }, class:"btn btn-danger" %>
+  <% end %>
+<% end %>
+<%= render :template => 'admin/frame' %>
+
+<%
+=begin
+%>
 <h1>Editing App</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Show', [:admin, @app] %> |
 <%= link_to 'Back', admin_apps_path %>
+
+<%
+=end
+%>
