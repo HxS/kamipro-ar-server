@@ -64,7 +64,6 @@ class Company::StaffsController < ApplicationController
   def session_create
     login_params = params.require(:session).permit(:email, :password)
     email, password = login_params[:email], login_params[:password]
-    p email
     staff = Staff.find_by_email(email)
     if staff && staff.authenticate(password)
       session[:id] = staff.id
