@@ -6,6 +6,7 @@
     <thead>
       <tr>
         <th>#</th>
+        <th>名前</th>
         <th>企業名</th>
         <th>有効 / 無効</th>
         <th>画像</th>
@@ -16,6 +17,7 @@
       <% @markers.each do |marker| %>
         <tr>
           <td><%= marker.id %></td>
+          <td><%= marker.name %></td>
           <td><%= marker.company.name %></td>
           <td><%= if marker.enabled then "有効" else "無効" end %></td>
           <td><%= image_tag marker.image.url %></td>

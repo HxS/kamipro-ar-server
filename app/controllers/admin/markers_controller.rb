@@ -80,6 +80,6 @@ class Admin::MarkersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def marker_params
-      params.require(:marker).permit(:company_id, :target_id, :enabled, :image, :image_cache)
+      params.require(:marker).permit(:company_id, :target_id, :enabled, :image, :image_cache, :name)
     end
 end
