@@ -5,7 +5,7 @@ module Kamiproar
     end
 
     def call(env)
-      if env['PATH_INFO'] =~ /\/api/
+      if env['PATH_INFO'] =~ /^\/api/
         env['action_dispatch.show_exceptions'] = false
         begin
           begin
