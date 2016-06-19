@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160618143357) do
+ActiveRecord::Schema.define(version: 20160619051008) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",           limit: 255
@@ -50,11 +50,11 @@ ActiveRecord::Schema.define(version: 20160618143357) do
   add_index "apps_companies", ["company_id"], name: "index_apps_companies_on_company_id", using: :btree
 
   create_table "characters", force: :cascade do |t|
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "name",          limit: 255
-    t.string   "thumbnail_url", limit: 255
-    t.string   "target_id",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "name",       limit: 255
+    t.string   "thumbnail",  limit: 255
+    t.string   "target_id",  limit: 255
   end
 
   create_table "companies", force: :cascade do |t|
