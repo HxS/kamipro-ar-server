@@ -9,5 +9,4 @@ class Company < ActiveRecord::Base
 
   validates :name, presence: true
   validates :character_id, presence: true
-  validates :enabled, presence: true
 end
