@@ -1,5 +1,6 @@
 class Company::StaffsController < ApplicationController
   before_action :set_staff, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_staff, except: [:sign_in, :session_create]
 
   # GET /staffs
   # GET /staffs.json
@@ -28,7 +29,7 @@ class Company::StaffsController < ApplicationController
 
     respond_to do |format|
       if @staff.save
-        format.html { redirect_to [:admin, @staff], notice: 'Staff was successfully created.' }
+        format.html { redirect_to [:company, @staff], notice: '作成しました' }
       else
         format.html { render :new }
       end
@@ -39,8 +40,8 @@ class Company::StaffsController < ApplicationController
   # PATCH/PUT /staffs/1.json
   def update
     respond_to do |format|
-      if @staff.update(staff_params)
-        format.html { redirect_to [:admin, @staff], notice: 'Staff was successfully updated.' }
+      if staff_params[:password] == staff_params[:password_confirmation] && @staff.update(staff_params)
+        format.html { redirect_to company_staffs_path, notice: '更新しました' }
       else
         format.html { render :edit }
       end
@@ -51,9 +52,33 @@ class Company::StaffsController < ApplicationController
   # DELETE /staffs/1.json
   def destroy
     @staff.destroy
+    session[:id] = nil
     respond_to do |format|
-      format.html { redirect_to admin_staffs_url, notice: 'Staff was successfully destroyed.' }
+      format.html { redirect_to admin_staffs_url, notice: 'スタッフを削除しました' }
     end
+  end
+
+  def sign_in
+    render layout: nil
+  end
+
+  def session_create
+    login_params = params.require(:session).permit(:email, :password)
+    email, password = login_params[:email], login_params[:password]
+    staff = Staff.find_by_email(email)
+    if staff && staff.authenticate(password)
+      session[:id] = staff.id
+      redirect_to company_staff_path(staff), notice: 'ログインしました'
+    else
+      render json: staff
+    end
+  end
+
+  def sign_out
+    if current_staff
+      session[:id] = nil
+    end
+    redirect_to company_staffs_path
   end
 
   private
@@ -64,6 +89,6 @@ class Company::StaffsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def staff_params
-      params.require(:staff).permit(:company_id, :email, :password, :password_confirmation)
+      params.require(:staff).permit(:company_id, :name, :email, :password, :password_confirmation)
     end
 end

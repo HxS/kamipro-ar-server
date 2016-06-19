@@ -1,10 +1,6 @@
 <div class="col-md-3">
   <div class="list-group">
-    <a href="/admin/admins/" class="list-group-item">管理者</a>
-    <a href="/admin/companies/" class="list-group-item">企業</a>
-    <a href="/admin/staffs/" class="list-group-item">スタッフ</a>
-    <a href="/admin/markers" class="list-group-item">マーカー</a>
-    <a href="/admin/characters/" class="list-group-item">キャラクター</a>
-    <a href="/admin/advertisings/" class="list-group-item">広告</a>
+    <%= link_to 'スタッフ', company_staffs_path, {class: 'list-group-item'} %>
+    <%= link_to 'マーカー管理', company_markers_path, {class: 'list-group-item'} %>
   </div>
 </div>

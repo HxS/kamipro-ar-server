@@ -1,0 +1,9 @@
+<%= render 'company/header' %>
+<div class="container content">
+  <div class="row">
+    <%= render 'company/sidebar' %>
+    <div class="col-md-9">
+      <%= yield :content %>
+    </div>
+  </div>
+</div>

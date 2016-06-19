@@ -1,25 +1,22 @@
-<%= form_for([:admin, @marker]) do |f| %>
-  <% if @marker.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@marker.errors.count, "error") %> prohibited this marker from being saved:</h2>
-
-      <ul>
-      <% @marker.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<% content_for :content do %>
+  <%= form_for([:company, @marker]) do |f| %>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>項目</th>
+        <th>内容</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th>マーカー画像</th>
+        <td>
+          <%= f.file_field :image %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <%= f.submit '追加', class: 'btn btn-default' %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :company_id %><br>
-    <%= f.number_field :company_id %>
-  </div>
-  <div class="field">
-    <%= f.label :image_url %><br>
-    <%= f.text_field :image_url %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+<%= render template: 'company/frame' %>
