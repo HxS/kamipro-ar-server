@@ -30,6 +30,11 @@ ja:
         image: "広告バナー"
         marker_id: "マーカー"
         enabled: "有効/無効"
+      app:
+        name: "名前"
+        android_version: "Android アプリバージョン"
+        ios_version: "iOS アプリバージョン"
+        memo: "補足"
 
 
     errors:
