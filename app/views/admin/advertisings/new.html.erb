@@ -1,5 +1,78 @@
+<% content_for :content do %>
+  <script>
+    $(function(){
+      <%
+        markers = {}
+        @markers.each do |marker|
+          markers[marker.company.id] = markers[marker.company.id] || []
+          markers[marker.company.id].push({id:marker.id, name:marker.name})
+        end
+      %>
+      var all_markers = <%= raw markers.to_json %>
+      $("#select-company").change(function(){
+        var markers = all_markers[$(this).val()] || []
+        var $select = $("#advertising_marker_id")
+        $select.find("option").remove()
+        for(i = 0; i < markers.length; i++){
+          $select.append($("<option>").val(markers[i].id).html(markers[i].name))
+        }
+      })
+    })
+  </script>
+  <%= form_for([:admin, @advertising]) do |f| %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>リンク先</th>
+          <td><%= f.text_field :link, class:"form-control", placeholder:"URL" %></td>
+        </tr>
+        <tr>
+          <th>広告バナー</th>
+          <td>
+            <%= image_tag @advertising.image.url %><br>
+            <%= f.file_field :image %>
+            <%= f.hidden_field :image_cache %>
+          </td>
+        </tr>
+        <tr>
+          <th>企業</th>
+          <td><%= select nil, nil, @companies.pluck(:name, :id), {}, class:"form-control", id:"select-company" %></td>
+        </tr>
+        <tr>
+          <th>マーカー</th>
+          <td>
+            <%= f.collection_select :marker_id, @markers, :id,  :name, {}, class:"form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <th>有効/無効</th>
+          <td>
+            <label><%= f.radio_button :enabled, 1, :checked => @advertising.enabled %>有効</label>
+            <label><%= f.radio_button :enabled, 0, :checked => !@advertising.enabled %>無効</label>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <%= f.submit "作成", class:"btn btn-primary" %>
+  <% end %>
+<% end %>
+<%= render :template => 'admin/frame' %>
+
+<%
+=begin
+%>
+
 <h1>New Advertising</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Back', admin_advertisings_path %>
+<%
+=end
+%>
