@@ -30,7 +30,7 @@ class Admin::AdvertisingsController < ApplicationController
 
     respond_to do |format|
       if @advertising.save
-        format.html { redirect_to admin_advertisings_url }
+        format.html { redirect_to admin_advertisings_url, notice: '作成しました' }
         #format.html { redirect_to [:admin, @advertising], notice: 'Advertising was successfully created.' }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class Admin::AdvertisingsController < ApplicationController
   def update
     respond_to do |format|
       if @advertising.update(advertising_params)
-        format.html { redirect_to action:"edit" }
+        format.html { redirect_to action:"edit", notice: '更新しました' }
         #format.html { redirect_to [:admin, @advertising], notice: 'Advertising was successfully updated.' }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Admin::AdvertisingsController < ApplicationController
   def destroy
     @advertising.destroy
     respond_to do |format|
-      format.html { redirect_to admin_advertisings_url, notice: 'Advertising was successfully destroyed.' }
+      format.html { redirect_to admin_advertisings_url, notice: '削除しました' }
     end
   end
 
