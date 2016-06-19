@@ -30,7 +30,8 @@ class Admin::AdvertisingsController < ApplicationController
 
     respond_to do |format|
       if @advertising.save
-        format.html { redirect_to [:admin, @advertising], notice: 'Advertising was successfully created.' }
+        format.html { redirect_to admin_advertisings_url }
+        #format.html { redirect_to [:admin, @advertising], notice: 'Advertising was successfully created.' }
       else
         format.html { render :new }
       end
@@ -42,7 +43,8 @@ class Admin::AdvertisingsController < ApplicationController
   def update
     respond_to do |format|
       if @advertising.update(advertising_params)
-        format.html { redirect_to [:admin, @advertising], notice: 'Advertising was successfully updated.' }
+        format.html { redirect_to action:"edit" }
+        #format.html { redirect_to [:admin, @advertising], notice: 'Advertising was successfully updated.' }
       else
         format.html { render :edit }
       end
