@@ -1,5 +1,7 @@
 class Admin::AdvertisingsController < ApplicationController
   before_action :set_advertising, only: [:show, :edit, :update, :destroy]
+  before_action :set_companies
+  before_action :set_markers
 
   # GET /advertisings
   # GET /advertisings.json
@@ -62,8 +64,16 @@ class Admin::AdvertisingsController < ApplicationController
       @advertising = Advertising.find(params[:id])
     end
 
+    def set_companies
+      @companies = Company.all
+    end
+
+    def set_markers
+      @markers = Marker.all
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def advertising_params
-      params.require(:advertising).permit(:company_id, :image_url, :link_url)
+      params.require(:advertising).permit(:marker_id, :image, :link)
     end
 end
