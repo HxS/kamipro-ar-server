@@ -1,3 +1,36 @@
+<% content_for :content do %>
+  <div class="container-fluid" align="right" style="margin-bottom: 20px;">
+    <%= link_to '新規追加', new_admin_character_path, class:"btn btn-primary" %>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>キャラクタ名</th>
+        <th>サムネイル</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @characters.each do |character| %>
+        <tr>
+          <td><%= character.id %></td>
+          <td><%= character.name %></td>
+          <td><%= image_tag character.thumbnail.url %></td>
+          <td align='right'>
+            <%= link_to '編集', edit_admin_character_path(character), class:"btn btn-default" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+<%= render :template => 'admin/frame' %>
+<%
+=begin
+%>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Characters</h1>
@@ -29,3 +62,7 @@
 <br>
 
 <%= link_to 'New Character', new_admin_character_path %>
+
+<%
+=end
+%>

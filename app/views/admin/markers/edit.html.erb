@@ -13,6 +13,10 @@
           <td><%= @marker.id %></td>
         </tr>
         <tr>
+          <th>名前</th>
+          <td><%= f.text_field :name, class:"form-control", placeholder:"Name" %></td>
+        </tr>
+        <tr>
           <th>企業</th>
           <td>
             <%= f.collection_select :company_id, @companies, :id,  :name, {}, class:"form-control" %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160619051008) do
+ActiveRecord::Schema.define(version: 20160619084634) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",           limit: 255
@@ -22,15 +22,15 @@ ActiveRecord::Schema.define(version: 20160619051008) do
   end
 
   create_table "advertisings", force: :cascade do |t|
-    t.string   "image_url",  limit: 255
-    t.string   "link_url",   limit: 255
+    t.string   "image",      limit: 255
+    t.string   "link",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "marker_id",  limit: 4
     t.boolean  "enabled"
   end
 
-  add_index "advertisings", ["marker_id"], name: "index_advertisings_on_marker_id", using: :btree
+  add_index "advertisings", ["marker_id"], name: "fk_rails_4d5226afb6", using: :btree
 
   create_table "apps", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20160619051008) do
     t.datetime "updated_at",             null: false
     t.string   "name",       limit: 255
     t.string   "thumbnail",  limit: 255
-    t.string   "target_id",  limit: 255
   end
 
   create_table "companies", force: :cascade do |t|
@@ -87,9 +86,11 @@ ActiveRecord::Schema.define(version: 20160619051008) do
     t.datetime "updated_at",             null: false
     t.boolean  "enabled"
     t.string   "target_id",  limit: 255
+    t.string   "name",       limit: 255
   end
 
   add_index "markers", ["company_id"], name: "index_markers_on_company_id", using: :btree
+  add_index "markers", ["name"], name: "index_markers_on_name", unique: true, using: :btree
 
   create_table "reaches", force: :cascade do |t|
     t.integer  "advertising_id", limit: 4
@@ -121,6 +122,7 @@ ActiveRecord::Schema.define(version: 20160619051008) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "advertisings", "markers"
   add_foreign_key "apps_companies", "apps"
   add_foreign_key "apps_companies", "companies"
   add_foreign_key "impressions", "advertisings"

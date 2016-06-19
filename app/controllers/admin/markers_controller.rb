@@ -30,7 +30,7 @@ class Admin::MarkersController < ApplicationController
     respond_to do |format|
       if @marker.save
         if Vuforia.upload @marker
-          format.html { redirect_to [:admin, @marker], notice: 'Marker was successfully created.' }
+          format.html { redirect_to admin_markers_url }
         else
           format.html { render :edit }
         end
@@ -80,6 +80,6 @@ class Admin::MarkersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def marker_params
-      params.require(:marker).permit(:company_id, :target_id, :enabled, :image, :image_cache)
+      params.require(:marker).permit(:company_id, :target_id, :enabled, :image, :image_cache, :name)
     end
 end

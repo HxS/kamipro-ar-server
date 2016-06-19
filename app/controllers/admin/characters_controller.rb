@@ -28,7 +28,8 @@ class Admin::CharactersController < ApplicationController
 
     respond_to do |format|
       if @character.save
-        format.html { redirect_to [:admin, @character], notice: 'Character was successfully created.' }
+        format.html { redirect_to action:"index" }
+        #format.html { redirect_to [:admin, @character], notice: 'Character was successfully created.' }
       else
         format.html { render :new }
       end
@@ -40,7 +41,8 @@ class Admin::CharactersController < ApplicationController
   def update
     respond_to do |format|
       if @character.update(character_params)
-        format.html { redirect_to [:admin, @character], notice: 'Character was successfully updated.' }
+        format.html { redirect_to action:"edit" }
+        #format.html { redirect_to [:admin, @character], notice: 'Character was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -64,6 +66,6 @@ class Admin::CharactersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def character_params
-      params.require(:character).permit(:name, :asset_url, :thumbnail_url)
+      params.require(:character).permit(:name, :thumbnail)
     end
 end
