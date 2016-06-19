@@ -30,5 +30,6 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_staff
+  helper_method :current_admin
 
 end
