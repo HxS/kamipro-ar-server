@@ -5849,3 +5849,7 @@ a img:hover {
     max-width: 100%;
     display: block;
     margin: 0 auto 40px; }
+
+.field_with_errors {
+  display: inline;
+}
