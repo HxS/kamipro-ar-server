@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :staffs
     resources :apps
     resources :advertisings
+    get '/' => 'welcome#index'
   end
 
 

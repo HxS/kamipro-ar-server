@@ -5817,5 +5817,35 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-table td img {
+* {
+  font-family: Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif; }
+
+table .advertisings td img {
+  max-height: 120px;
+  max-width: 160px; }
+
+table .advertisings td .btn {
+  margin-bottom: 10px;
+  min-width: 100%; }
+
+td img {
   max-height: 120px; }
+
+a img:hover {
+  opacity: 0.8; }
+
+.jumbotron {
+  background-color: #153444; }
+  .jumbotron h1 {
+    font-size: 28px;
+    color: #FFEB00;
+    margin-bottom: 40px;
+    text-align: center; }
+  .jumbotron p {
+    font-size: 18px;
+    color: #FFEB00;
+    text-align: center; }
+  .jumbotron img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto 40px; }
