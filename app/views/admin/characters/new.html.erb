@@ -1,5 +1,42 @@
+<% content_for :content do %>
+  <%= form_for([:admin, @character]) do |f| %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>キャラクタ名</th>
+          <td><%= f.text_field :name, class:"form-control", placeholder:"Name" %></td>
+        </tr>
+        <tr>
+          <th>サムネイル</th>
+          <td>
+            <%= image_tag @character.thumbnail.url %><br>
+            <%= f.file_field :thumbnail %>
+            <%= f.hidden_field :thumbnail_cache %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <%= f.submit "更新", class:"btn btn-default" %>
+    <%= link_to '削除', [:admin, @character], method: :delete, data: { confirm: '本当に削除しますか？' }, class:"btn btn-danger" %>
+  <% end %>
+<% end %>
+<%= render :template => 'admin/frame' %>
+
+<%
+=begin
+%>
+
 <h1>New Character</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Back', admin_characters_path %>
+<%
+=end
+%>
