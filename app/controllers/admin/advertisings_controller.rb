@@ -1,4 +1,5 @@
 class Admin::AdvertisingsController < ApplicationController
+  before_action :authenticate_admin
   before_action :set_advertising, only: [:show, :edit, :update, :destroy]
   before_action :set_companies
   before_action :set_markers

@@ -1,4 +1,5 @@
 class Admin::CharactersController < ApplicationController
+  before_action :authenticate_admin
   before_action :set_character, only: [:show, :edit, :update, :destroy]
 
   # GET /characters

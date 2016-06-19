@@ -1,4 +1,5 @@
 class Admin::AppsController < ApplicationController
+  before_action :authenticate_admin
   before_action :set_app, only: [:show, :edit, :update, :destroy]
 
   # GET /apps

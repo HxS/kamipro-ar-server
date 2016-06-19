@@ -1,4 +1,5 @@
 class Admin::MarkersController < ApplicationController
+  before_action :authenticate_admin
   before_action :set_marker, only: [:show, :edit, :update, :destroy]
   before_action :set_companies
 
