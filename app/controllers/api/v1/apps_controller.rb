@@ -3,48 +3,37 @@ class Api::V1::AppsController < ApplicationController
   protect_from_forgery with: :null_session
   skip_before_filter :verify_authenticity_token
 
+  before_action :set_app
+  before_action :check_app_version
+
 
   def resources
-    app_id = params["id"]
-    app = App.find_by(id:app_id)
-    if app == nil
-      render_error "指定されたアプリが見つかりません"
-    else
-      characters = []
-      markers = []
-      advertisings = []
-      app.companies.where(enabled:true).each{|c|
-        characters.push c.character.attributes.select{|k,v| [:id, :name, :target_id, :updated_at].include? k.to_sym}
-        markers.concat c.markers.where(enabled:true).pluck_to_hash(:id, :target_id, :updated_at)
-        c.markers.each{|m|
-          advertisings.concat m.advertisings.where(enabled:true).pluck_to_hash(:id, :image_url, :link_url, :updated_at)
-        }
+    characters = []
+    markers = []
+    advertisings = []
+    @app.companies.where(enabled:true).each{|c|
+      characters.push c.character.attributes.select{|k,v| [:id, :name, :target_id, :updated_at].include? k.to_sym}
+      markers.concat c.markers.where(enabled:true).pluck_to_hash(:id, :target_id, :updated_at)
+      c.markers.each{|m|
+        advertisings.concat m.advertisings.where(enabled:true).pluck_to_hash(:id, :image_url, :link_url, :updated_at)
       }
-      render json:{characters:characters, markers:markers, advertisings:advertisings}
-    end
+    }
+    render json:{characters:characters, markers:markers, advertisings:advertisings}
   end
 
   def relations
-    app_id = params["id"]
-    app = App.find_by(id:app_id)
-    if app == nil
-      render_error "指定されたアプリが見つかりません"
-    else
-      relations = []
-      app.companies.where(enabled:true).each{|c|
-        character_id = c.character.id
-        c.markers.where(enabled:true).each{|m|
-          advertisings = []
-          advertisings.concat m.advertisings.where(enabled:true).pluck(:id)
-          relations.push({marker_id:m.id, character_id: character_id, advertisings:advertisings})
-        }
+    @app.companies.where(enabled:true).each{|c|
+      character_id = c.character.id
+      c.markers.where(enabled:true).each{|m|
+        advertisings = []
+        advertisings.concat m.advertisings.where(enabled:true).pluck(:id)
+        relations.push({marker_id:m.id, character_id: character_id, advertisings:advertisings})
       }
-      render json:relations
-    end
+    }
+    render json:relations
   end
 
   def impressions
-    app_id = params["id"]
     user = User.find_by(uuid:params["uuid"])
     unless user
       render_error "指定されたユーザが存在しません"
@@ -71,7 +60,6 @@ class Api::V1::AppsController < ApplicationController
   end
 
   def reaches
-    app_id = params["id"]
     user = User.find_by(uuid:params["uuid"])
     unless user
       render_error "指定されたユーザが存在しません"
@@ -93,5 +81,33 @@ class Api::V1::AppsController < ApplicationController
       return
     end
     render json:nil
+  end
+
+private
+  def set_app
+    app_id = params["id"]
+    @app = App.find_by(id:app_id)
+    unless @app
+      render_error "指定されたアプリが見つかりません"
+      return false
+    end
+  end
+  def check_app_version
+    android_app_version = request.headers["X-KAMIPRO-ANDROID-VERSION"]
+    ios_app_version = request.headers["X-KAMIPRO-IOS-VERSION"]
+    if android_app_version
+      if @app.android_version == "" || Gem::Version.new(android_app_version) < Gem::Version.new(@app.android_version)
+        render_error "アプリを更新してください"
+        return false
+      end
+    elsif ios_app_version
+      if @app.ios_version == "" || Gem::Version.new(ios_app_version) < Gem::Version.new(@app.ios_version)
+        render_error "アプリを更新してください"
+        return false
+      end
+    else
+      render_error "パラメータが不足しています"
+      return false
+    end
   end
 end

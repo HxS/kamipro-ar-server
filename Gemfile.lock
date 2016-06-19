@@ -167,6 +167,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    version (1.0.0)
     vws (1.2.4)
       json (~> 1.8)
       rest-client (~> 1.7.3)
@@ -200,6 +201,7 @@ DEPENDENCIES
   spring
   turbolinks
   uglifier (>= 1.3.0)
+  version
   vws (= 1.2.4)
   web-console (~> 2.0)
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160619105143) do
+ActiveRecord::Schema.define(version: 20160619142639) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",           limit: 255
@@ -35,10 +35,12 @@ ActiveRecord::Schema.define(version: 20160619105143) do
   add_index "advertisings", ["marker_id"], name: "fk_rails_4d5226afb6", using: :btree
 
   create_table "apps", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "memo",       limit: 255
+    t.string   "name",            limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "memo",            limit: 255
+    t.string   "android_version", limit: 255
+    t.string   "ios_version",     limit: 255
   end
 
   create_table "apps_companies", force: :cascade do |t|
