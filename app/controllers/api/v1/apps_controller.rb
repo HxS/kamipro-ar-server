@@ -24,15 +24,15 @@ class Api::V1::AppsController < ApplicationController
   end
 
   def relations
+    rels = []
     @app.companies.where(enabled:true).each{|c|
       character_id = c.character.id
       c.markers.where(enabled:true).each{|m|
-        advertisings = []
-        advertisings.concat m.advertisings.where(enabled:true).pluck(:id)
-        relations.push({marker_id:m.id, character_id: character_id, advertisings:advertisings})
+        advertisings = m.advertisings.where(enabled:true).pluck(:id)
+        rels.push({marker_id:m.id, character_id: character_id, advertisings:advertisings})
       }
     }
-    render json:relations
+    render json:rels
   end
 
   def impressions
