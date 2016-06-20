@@ -15,7 +15,9 @@ class Api::V1::AppsController < ApplicationController
       characters.push c.character.attributes.select{|k,v| [:id, :name, :updated_at].include? k.to_sym}
       markers.concat c.markers.where(enabled:true).pluck_to_hash(:id, :name, :target_id, :updated_at)
       c.markers.each{|m|
-        advertisings.concat m.advertisings.where(enabled:true).pluck_to_hash(:id, :image, :link, :updated_at)
+        m.advertisings.where(enabled:true).each{|adv|
+          advertisings.push ({id:adv.id, image:adv.image.url, link:adv.link, updated_at:adv.updated_at})
+        }
       }
     }
     render json:{characters:characters, markers:markers, advertisings:advertisings}
