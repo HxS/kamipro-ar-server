@@ -21,7 +21,7 @@
         <td><%= marker.id %></td>
         <td><%= image_tag marker.image_url %></td>
         <td align="right">
-          <a href='marker-advertisings.html' class="btn btn-default">マーカーに紐付いた広告一覧</a>
+          <%= link_to 'マーカーに紐ついた広告一覧', company_marker_advertisings_path(marker), class: 'btn btn-default' %>
           <%= link_to '削除', company_marker_path(marker), method: :delete, class: 'btn btn-danger' %>
         </td>
 

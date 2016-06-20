@@ -1,4 +1,5 @@
 class Company::AdvertisingsController < ApplicationController
+  before_action :set_marker, only: [:index, :new, :create]
   before_action :set_advertising, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_staff
 
@@ -58,6 +59,10 @@ class Company::AdvertisingsController < ApplicationController
   end
 
   private
+    def set_marker
+      @marker = Marker.find(params[:marker_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_advertising
       @advertising = Advertising.find(params[:id])
