@@ -1,10 +1,4 @@
 <% content_for :content do %>
-  <% if notice %>
-    <div class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <%= notice %>
-    </div>
-  <% end %>
   <%= form_for([:company, @marker]) do |f| %>
     <table class="table">
       <thead>
