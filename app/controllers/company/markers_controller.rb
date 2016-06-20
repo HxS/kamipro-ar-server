@@ -26,10 +26,11 @@ class Company::MarkersController < ApplicationController
   # POST /markers.json
   def create
     @marker = Marker.new(marker_params)
+    @marker.company = current_staff.company
 
     respond_to do |format|
       if @marker.save
-        format.html { redirect_to [:admin, @marker], notice: 'Marker was successfully created.' }
+        format.html { redirect_to company_markers_path, notice: '追加しました' }
       else
         format.html { render :new }
       end
@@ -41,7 +42,7 @@ class Company::MarkersController < ApplicationController
   def update
     respond_to do |format|
       if @marker.update(marker_params)
-        format.html { redirect_to [:admin, @marker], notice: 'Marker was successfully updated.' }
+        format.html { redirect_to company_markers_path, notice: '更新しました' }
       else
         format.html { render :edit }
       end
@@ -53,7 +54,7 @@ class Company::MarkersController < ApplicationController
   def destroy
     @marker.destroy
     respond_to do |format|
-      format.html { redirect_to admin_markers_url, notice: 'Marker was successfully destroyed.' }
+      format.html { redirect_to company_markers_url, notice: '削除しました' }
       format.json { head :no_content }
     end
   end
@@ -66,6 +67,6 @@ class Company::MarkersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def marker_params
-      params.require(:marker).permit(:company_id, :image_url)
+      params.require(:marker).permit(:name, :image)
     end
 end
