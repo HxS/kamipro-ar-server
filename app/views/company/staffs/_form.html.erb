@@ -8,7 +8,7 @@
       </tr>
       </thead>
       <tbody>
-      <% if controller.action_name == 'edit' %>
+      <% if controller.action_name == 'edit' || controller.action_name == 'update' %>
         <tr>
           <th>ID</th>
           <td><%= @staff.id %></td>
@@ -16,7 +16,7 @@
       <% end %>
       <tr>
         <th>名前</th>
-        <% if controller.action_name == 'new' %>
+        <% if controller.action_name == 'new' || controller.action_name == 'create' %>
           <td><%= f.text_field :name, class: 'form-control' %></td>
         <% else %>
           <td><%= @staff.name %></td>
@@ -36,7 +36,7 @@
       </tr>
       </tbody>
     </table>
-        <% if controller.action_name == 'new' %>
+        <% if controller.action_name == 'new' || controller.action_name == 'create' %>
           <%= f.submit '作成', class: 'btn btn-default' %>
         <% else %>
           <%= f.submit '更新', class: 'btn btn-default' %>
