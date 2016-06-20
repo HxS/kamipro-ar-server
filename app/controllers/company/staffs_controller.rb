@@ -5,7 +5,7 @@ class Company::StaffsController < ApplicationController
   # GET /staffs
   # GET /staffs.json
   def index
-    @staffs = Staff.all
+    @staffs = Staff.with_company(current_staff.company.id)
   end
 
   # GET /staffs/1
