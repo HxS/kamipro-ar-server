@@ -6,7 +6,7 @@ class Company::AdvertisingsController < ApplicationController
   # GET /advertisings
   # GET /advertisings.json
   def index
-    @advertisings = Advertising.all
+    @advertisings = Advertising.with_marker(@marker.id)
   end
 
   # GET /advertisings/1
@@ -27,10 +27,11 @@ class Company::AdvertisingsController < ApplicationController
   # POST /advertisings.json
   def create
     @advertising = Advertising.new(advertising_params)
+    @advertising.marker = @marker
 
     respond_to do |format|
       if @advertising.save
-        format.html { redirect_to [:admin, @advertising], notice: 'Advertising was successfully created.' }
+        format.html { redirect_to company_marker_advertisings_path(@marker), notice: '作成しました' }
       else
         format.html { render :new }
       end
@@ -42,7 +43,7 @@ class Company::AdvertisingsController < ApplicationController
   def update
     respond_to do |format|
       if @advertising.update(advertising_params)
-        format.html { redirect_to [:admin, @advertising], notice: 'Advertising was successfully updated.' }
+        format.html { redirect_to company_marker_advertisings_path(@advertising.marker), notice: '更新しました' }
       else
         format.html { render :edit }
       end
@@ -52,9 +53,10 @@ class Company::AdvertisingsController < ApplicationController
   # DELETE /advertisings/1
   # DELETE /advertisings/1.json
   def destroy
+    marker = @advertising.marker
     @advertising.destroy
     respond_to do |format|
-      format.html { redirect_to admin_advertisings_url, notice: 'Advertising was successfully destroyed.' }
+      format.html { redirect_to company_marker_advertisings_path(marker), notice: '削除しました' }
     end
   end
 
@@ -70,6 +72,6 @@ class Company::AdvertisingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def advertising_params
-      params.require(:advertising).permit(:company_id, :image_url, :link_url)
+      params.require(:advertising).permit(:image, :link, :enabled)
     end
 end
