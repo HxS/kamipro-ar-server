@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def current_staff
     if session[:id]
-      Staff.find_by(session[:id])
+      Staff.find(session[:id])
     end
   end
 
