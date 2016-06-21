@@ -5,7 +5,7 @@ class Company::MarkersController < ApplicationController
   # GET /markers
   # GET /markers.json
   def index
-    @markers = Marker.all
+    @markers = Marker.with_company(current_staff.company.id)
   end
 
   # GET /markers/1
