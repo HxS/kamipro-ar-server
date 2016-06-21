@@ -1,7 +1,6 @@
 class Company::StaffsController < ApplicationController
   before_action :set_staff, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_staff, except: [:sign_in, :session_create]
-  before_action :check_staff, only: [:show, :edit, :update, :destroy]
 
   # GET /staffs
   # GET /staffs.json
@@ -86,9 +85,6 @@ class Company::StaffsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_staff
       @staff = Staff.find(params[:id])
-    end
-
-    def check_staff
       unless current_staff.company == @staff.company
         redirect_to company_staffs_path and return
       end

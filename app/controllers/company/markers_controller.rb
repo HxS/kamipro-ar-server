@@ -63,6 +63,9 @@ class Company::MarkersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_marker
       @marker = Marker.find(params[:id])
+      unless current_staff.company == @marker.company
+        redirect_to company_markers_path and return
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

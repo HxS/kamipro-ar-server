@@ -63,11 +63,17 @@ class Company::AdvertisingsController < ApplicationController
   private
     def set_marker
       @marker = Marker.find(params[:marker_id])
+      unless current_staff.company == @marker.company
+        redirect_to company_markers_path and return
+      end
     end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_advertising
       @advertising = Advertising.find(params[:id])
+      unless current_staff.company == @advertising.marker.company
+        redirect_to company_markers_path and return
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
