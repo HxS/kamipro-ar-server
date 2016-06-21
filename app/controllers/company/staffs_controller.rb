@@ -71,7 +71,7 @@ class Company::StaffsController < ApplicationController
       session[:id] = staff.id
       redirect_to company_staff_path(staff), notice: 'ログインしました'
     else
-      render json: staff
+      render :sign_in
     end
   end
 
