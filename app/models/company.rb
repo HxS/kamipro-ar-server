@@ -9,4 +9,12 @@ class Company < ActiveRecord::Base
 
   validates :name, presence: true
   validates :character_id, presence: true
+
+  def impressions_count
+    Impression.joins(advertising: {marker: :company}).merge(Company.where(id: id)).count
+  end
+
+  def reaches_count
+    Reach.joins(advertising: {marker: :company}).merge(Company.where(id: id)).count
+  end
 end
