@@ -1,5 +1,5 @@
 class Character < ActiveRecord::Base
-  has_many :companies
+  has_many :companies, :dependent => :destroy
 
   mount_uploader :thumbnail, CharacterThumbnailUploader
 

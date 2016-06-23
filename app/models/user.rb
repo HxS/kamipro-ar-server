@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :impressions
-  has_many :reaches
+  has_many :impressions, :dependent => :destroy
+  has_many :reaches, :dependent => :destroy
   after_initialize :set_default_value
 
   private
