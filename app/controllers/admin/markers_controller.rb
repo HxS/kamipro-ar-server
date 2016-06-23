@@ -61,10 +61,12 @@ class Admin::MarkersController < ApplicationController
   # DELETE /markers/1
   # DELETE /markers/1.json
   def destroy
-    @marker.destroy
     respond_to do |format|
-      format.html { redirect_to admin_markers_url, notice: '削除しました' }
-      format.json { head :no_content }
+      if @marker.destroy
+        format.html { redirect_to admin_markers_url, notice: '削除しました' }
+      else
+        format.html { render :edit }
+      end
     end
   end
 
