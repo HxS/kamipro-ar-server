@@ -15,7 +15,7 @@ class Vuforia
         else
           res = connection.add_target(name, path, size[0], if marker.enabled then 1 else 0 end, meta)
           marker.target_id = (JSON.parse res)["target_id"]
-          marker.save!
+          marker.save!(validate: false)
         end
         true
       rescue => e
