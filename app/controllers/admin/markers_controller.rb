@@ -61,9 +61,7 @@ class Admin::MarkersController < ApplicationController
   # DELETE /markers/1
   # DELETE /markers/1.json
   def destroy
-    target_id = @marker.target_id
     @marker.destroy
-    Vuforia.delete target_id
     respond_to do |format|
       format.html { redirect_to admin_markers_url, notice: '削除しました' }
       format.json { head :no_content }
