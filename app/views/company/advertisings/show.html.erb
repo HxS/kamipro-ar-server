@@ -1,9 +1,5 @@
 <% content_for :content do %>
-  <div class="jumbotron">
-    <h1>○○社 管理画面</h1>
-    <img src="http://codeforfukui.github.io/meganehack/img/160316_banner.png">
-    <p>キャラクター表示回数 : 100 / 全体広告インプレッション数 : 100</p>
-  </div>
+  <%= render partial: 'company/character', locals: {company: current_staff.company} %>
   <div class="container-fluid" align="right" style="margin-bottom: 20px;">
     <%= link_to '広告を編集', edit_company_advertising_path(@advertising), class: 'btn btn-primary' %>
   </div>
