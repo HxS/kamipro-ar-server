@@ -1,29 +1,44 @@
-<%= form_for([:admin, @advertising]) do |f| %>
-  <% if @advertising.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@advertising.errors.count, "error") %> prohibited this advertising from being saved:</h2>
-
-      <ul>
-      <% @advertising.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<% content_for :content do %>
+  <%= form_for(shallow_args(:company, @marker, @advertising)) do |f| %>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>項目</th>
+        <th>内容</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if controller.action_name == 'edit' || controller.action_name == 'update' %>
+          <tr>
+            <th>ID</th>
+            <td><%= @advertising.id %></td>
+          </tr>
       <% end %>
-      </ul>
-    </div>
+      <tr>
+        <th>リンク先</th>
+        <td><%= f.text_field :link, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <th>広告バナー</th>
+        <td>
+          <%= image_tag @advertising.image %>
+          <%= f.file_field :image %>
+        </td>
+      </tr>
+      <tr>
+        <th>有効 / 無効</th>
+        <td>
+          <%= f.check_box :enabled %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <% if controller.action_name == 'new' || controller.action_name == 'create' %>
+      <%= f.submit '作成', class: 'btn btn-default' %>
+    <% else %>
+      <%= f.submit '更新', class: 'btn btn-default' %>
+      <%= link_to '削除', company_advertising_path(@advertising), method: :delete, class: 'btn btn-danger' %>
+    <% end %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :company_id %><br>
-    <%= f.number_field :company_id %>
-  </div>
-  <div class="field">
-    <%= f.label :image_url %><br>
-    <%= f.text_field :image_url %>
-  </div>
-  <div class="field">
-    <%= f.label :link_url %><br>
-    <%= f.text_field :link_url %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+<%= render template: 'company/frame' %>

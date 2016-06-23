@@ -23,8 +23,9 @@ Rails.application.routes.draw do
         delete :sign_out
       end
     end
-    resources :advertisings
-    resources :markers
+    resources :markers, except: [:show], shallow: true do
+      resources :advertisings
+    end
   end
 
   namespace :api, { format: 'json' } do

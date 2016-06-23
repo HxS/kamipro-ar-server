@@ -5,7 +5,7 @@ class Company::StaffsController < ApplicationController
   # GET /staffs
   # GET /staffs.json
   def index
-    @staffs = Staff.all
+    @staffs = Staff.with_company(current_staff.company.id)
   end
 
   # GET /staffs/1
@@ -70,7 +70,7 @@ class Company::StaffsController < ApplicationController
       session[:id] = staff.id
       redirect_to company_staff_path(staff), notice: 'ログインしました'
     else
-      render json: staff
+      render :sign_in
     end
   end
 
@@ -85,6 +85,9 @@ class Company::StaffsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_staff
       @staff = Staff.find(params[:id])
+      unless current_staff.company == @staff.company
+        redirect_to company_staffs_path and return
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

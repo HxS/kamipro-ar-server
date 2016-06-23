@@ -1,19 +1,22 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Company:</strong>
-  <%= @advertising.company_id %>
-</p>
-
-<p>
-  <strong>Image url:</strong>
-  <%= @advertising.image_url %>
-</p>
-
-<p>
-  <strong>Link url:</strong>
-  <%= @advertising.link_url %>
-</p>
-
-<%= link_to 'Edit', edit_admin_advertising_path(@advertising) %> |
-<%= link_to 'Back', admin_advertisings_path %>
+<% content_for :content do %>
+  <div class="jumbotron">
+    <h1>○○社 管理画面</h1>
+    <img src="http://codeforfukui.github.io/meganehack/img/160316_banner.png">
+    <p>キャラクター表示回数 : 100 / 全体広告インプレッション数 : 100</p>
+  </div>
+  <div class="container-fluid" align="right" style="margin-bottom: 20px;">
+    <%= link_to '広告を編集', edit_company_advertising_path(@advertising), class: 'btn btn-primary' %>
+  </div>
+  <div id="map" style="height: 400px; margin-top: 50px;"></div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>クリックされた日時</th>
+        <th>場所</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+<% end %>
+<%= render template: 'company/frame' %>
