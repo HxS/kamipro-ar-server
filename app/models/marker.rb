@@ -1,7 +1,7 @@
 class Marker < ActiveRecord::Base
   belongs_to :company
   has_many :marker
-  has_many :advertisings
+  has_many :advertisings, :dependent => :destroy
 
   mount_uploader :image, MarkerImageUploader
 
