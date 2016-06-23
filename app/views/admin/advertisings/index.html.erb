@@ -19,7 +19,7 @@
         <tr>
           <td><%= advertising.id %></td>
           <td><%= advertising.link %></td>
-          <td><%= image_tag advertising.image.url %></td>
+          <td><%= image_tag advertising.image.url(:thumbnail) %></td>
           <td><%= advertising.marker.company.name %></td>
           <td><%= advertising.marker.name %></td>
           <td><%= if advertising.enabled then "有効" else "無効" end %></td>

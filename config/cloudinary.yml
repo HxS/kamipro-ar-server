@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: hxs
+  api_key: '988864566225654'
+  api_secret: b-GI8wN53gc7jncH5Lfs6GvKQRk
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: hxs
+  api_key: '988864566225654'
+  api_secret: b-GI8wN53gc7jncH5Lfs6GvKQRk
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: hxs
+  api_key: '988864566225654'
+  api_secret: b-GI8wN53gc7jncH5Lfs6GvKQRk
+  enhance_image_tag: true
+  static_image_support: false

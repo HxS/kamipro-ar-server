@@ -16,7 +16,7 @@
         <tr>
           <td><%= character.id %></td>
           <td><%= character.name %></td>
-          <td><%= image_tag character.thumbnail.url %></td>
+          <td><%= image_tag character.thumbnail.url(:thumbnail) %></td>
           <td align='right'>
             <%= link_to '編集', edit_admin_character_path(character), class:"btn btn-default" %>
           </td>
