@@ -2,7 +2,7 @@ class Vuforia
   class << self
     def upload(marker)
       begin
-        path = marker.image.path
+        path = marker.image.url
         size = FastImage.size(path)
 
         name = "marker"+marker.id.to_s
