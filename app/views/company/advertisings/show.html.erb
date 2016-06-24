@@ -1,5 +1,5 @@
 <% content_for :content do %>
-  <%= render partial: 'company/character', locals: {company: current_staff.company} %>
+  <%= render partial: 'company/character', locals: {company: current_staff.company, image: @advertising.image.url } %>
   <div class="container-fluid" align="right" style="margin-bottom: 20px;">
     <%= link_to '広告を編集', edit_company_advertising_path(@advertising), class: 'btn btn-primary' %>
   </div>
