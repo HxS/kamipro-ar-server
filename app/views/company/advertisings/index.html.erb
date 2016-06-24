@@ -1,5 +1,10 @@
 <% content_for :content do %>
-  <%= render partial: 'company/character', locals: {company: current_staff.company, image: @marker.image.url} %>
+  <% company = current_staff.company %>
+  <div class="jumbotron">
+    <h1><%= company.name %>社 管理画面</h1>
+    <%= image_tag @marker.image.url %>
+    <p>マーカー表示回数 : <%= @marker.reaches_count %> / マーカーに関する広告インプレッション数 : <%= @marker.impressions_count %></p>
+  </div>
   <div class="container-fluid" align="right" style="margin-bottom: 20px;">
     <%= link_to '広告を新規追加', new_company_marker_advertising_path, class: 'btn btn-primary' %>
   </div>

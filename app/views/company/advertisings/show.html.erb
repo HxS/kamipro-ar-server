@@ -1,5 +1,10 @@
 <% content_for :content do %>
-  <%= render partial: 'company/character', locals: {company: current_staff.company, image: @advertising.image.url } %>
+  <% company = current_staff.company %>
+  <div class="jumbotron">
+    <h1><%= company.name %>社 管理画面</h1>
+    <%= image_tag @advertising.image.url %>
+    <p>広告バナー表示回数 : <%= @advertising.reaches_count %> / 広告インプレッション数 : <%= @advertising.impressions_count %></p>
+  </div>
   <div class="container-fluid" align="right" style="margin-bottom: 20px;">
     <%= link_to '広告を編集', edit_company_advertising_path(@advertising), class: 'btn btn-primary' %>
   </div>

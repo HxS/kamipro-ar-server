@@ -15,6 +15,14 @@ class Marker < ActiveRecord::Base
 
   scope :with_company, -> (company_id) { where(company: company_id) }
 
+  def impressions_count
+    Impression.joins(advertising: :marker).merge(Marker.where(id: id)).count
+  end
+
+  def reaches_count
+    Reach.joins(advertising: :marker).merge(Marker.where(id: id)).count
+  end
+
   def delete_from_vuforia
     Vuforia.delete target_id
   end
