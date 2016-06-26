@@ -16,6 +16,8 @@ class Company::MarkersController < ApplicationController
   # GET /markers/new
   def new
     @marker = Marker.new
+    company = current_staff.company
+    redirect_to company_markers_path, alert: 'これ以上マーカーを追加することができません' if company.max_marker <= Marker.with_company(company.id).size
   end
 
   # GET /markers/1/edit
