@@ -37,6 +37,18 @@
           </td>
         </tr>
         <tr>
+          <th>マーカー最大数</th>
+          <td>
+            <%= f.number_field :max_marker, class: 'form-control' %>
+          </td>
+        </tr>
+        <tr>
+          <th>広告最大数</th>
+          <td>
+            <%= f.number_field :max_advertise, class: 'form-control' %>
+          </td>
+        </tr>
+        <tr>
           <th>アプリID</th>
           <td>
             <%= f.collection_check_boxes(:app_ids, @apps, :id, :name, checked:@company_app_ids) do |b|%>
