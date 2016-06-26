@@ -11,6 +11,7 @@ class Advertising < ActiveRecord::Base
   validates :marker_id, presence: true
 
   scope :with_marker, -> (marker_id) { where(marker: marker_id) }
+  scope :with_company, -> (company_id) { joins(marker: :company).merge(Company.where(id: company_id)) }
 
   def impressions_count
     impressions.count

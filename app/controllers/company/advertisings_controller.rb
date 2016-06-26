@@ -17,6 +17,8 @@ class Company::AdvertisingsController < ApplicationController
   # GET /advertisings/new
   def new
     @advertising = Advertising.new
+    company = current_staff.company
+    redirect_to company_marker_advertisings_path(@marker), alert: 'これ以上広告を追加することができません' if company.max_advertise <= Advertising.with_company(company.id).size
   end
 
   # GET /advertisings/1/edit
