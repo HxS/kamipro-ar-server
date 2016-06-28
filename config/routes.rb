@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'company/welcome#index'
 
   namespace :admin do
     resources :admins, :except => [:edit]
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
     resources :markers, except: [:show], shallow: true do
       resources :advertisings
     end
+    get '/' => 'welcome#index'
   end
 
   namespace :api, { format: 'json' } do
