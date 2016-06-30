@@ -12,6 +12,8 @@ class Company::AdvertisingsController < ApplicationController
   # GET /advertisings/1
   # GET /advertisings/1.json
   def show
+    @reaches = Reach.with_advertising(params[:id])
+    @impressions = Impression.with_advertising(params[:id])
   end
 
   # GET /advertisings/new

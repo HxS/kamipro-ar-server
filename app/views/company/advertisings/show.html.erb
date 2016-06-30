@@ -12,12 +12,87 @@
   <table class="table">
     <thead>
       <tr>
-        <th>クリックされた日時</th>
+        <th>表示された日時</th>
         <th>場所</th>
       </tr>
+      <% @reaches.each do |reach| %>
+        <tr>
+          <td><%= reach.displayed_at.strftime("%Y年 %m月 %d日, %H:%M:%S") %></td>
+          <td><a onclick="addPin(<%= reach.latitude %>,<%= reach.longitude %>)">地図で場所を確認</a></td>
+        </tr>
+      <% end %>
     </thead>
     <tbody>
     </tbody>
   </table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>クリックされた日時</th>
+        <th>場所</th>
+      </tr>
+      <% @impressions.each do |impression| %>
+        <tr>
+          <td><%= impression.displayed_at.strftime("%Y年 %m月 %d日, %H:%M:%S") %></td>
+          <td><a onclick="addPin(<%= impression.latitude %>,<%= impression.longitude %>)">地図で場所を確認</a></td>
+        </tr>
+      <% end %>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <script type="text/javascript">
+    var map;
+    var data = [
+      <% @reaches.each do |reach| %>
+        {
+          lat: <%= reach.latitude %>,
+          lng: <%= reach.longitude %>,
+          label: "<%= reach.displayed_at.strftime("%Y年 %m月 %d日, %H:%M:%S") %>"
+        },
+      <% end %>
+    ]
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 33.5901528, lng: 130.3678963},
+        zoom:   15
+      });
+      bounds = new google.maps.LatLngBounds();
+      for (var i = 0; i < data.length; i++) {
+        var latLng = new google.maps.LatLng(data[i].lat,data[i].lng);
+        var marker = new google.maps.Marker({
+          position: latLng,
+          label: i + 1 + '',
+          map: map
+        });
+        var infoWindow = new google.maps.InfoWindow({
+          content: data[i].label
+        });
+        google.maps.event.addListener(marker, "click", function(event) {
+          infoWindow.open(map, marker);
+        });
+        bounds.extend(latLng);
+      }
+      if(data.length > 0) {
+        map.fitBounds(bounds);
+      }
+      addPin = function(latitude, longitude) {
+        var latLng = new google.maps.LatLng(latitude,longitude);
+        if (window.currentMarker !== undefined) {
+          window.currentMarker.setMap(null);
+        }
+        window.currentMarker = new google.maps.Marker({
+          position: latLng,
+          map: map,
+          color: 'green'
+        });
+        map.setCenter(latLng);
+      }
+    }
+  </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2jwOz7ii2P1NsTdOtQX9d9zdwnsm9MdU&callback=initMap">
+  </script>
 <% end %>
 <%= render template: 'company/frame' %>
