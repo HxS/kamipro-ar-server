@@ -1,7 +1,7 @@
 <% content_for :content do %>
   <% company = current_staff.company %>
   <div class="jumbotron">
-    <h1><%= company.name %>社 管理画面</h1>
+    <h1><%= company.name %>様 管理画面</h1>
     <%= image_tag @advertising.image.url %>
     <p>広告バナー表示回数 : <%= @advertising.reaches_count %> / 広告インプレッション数 : <%= @advertising.impressions_count %></p>
   </div>

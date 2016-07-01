@@ -1,7 +1,7 @@
 <% content_for :content do %>
   <% company = current_staff.company %>
   <div class="jumbotron">
-    <h1><%= company.name %>社 管理画面</h1>
+    <h1><%= company.name %>様 管理画面</h1>
     <%= image_tag @marker.image.url %>
     <p>マーカー表示回数 : <%= @marker.reaches_count %> / マーカーに関する広告インプレッション数 : <%= @marker.impressions_count %></p>
   </div>
