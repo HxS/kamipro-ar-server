@@ -8,7 +8,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html"><%= image_tag "title.png" %></a>
+      <%= link_to admin_path, class: 'navbar-brand' do %>
+          <%= image_tag 'title.png' %>
+      <% end %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
