@@ -32,8 +32,14 @@
         <tr>
           <th>有効/無効</th>
           <td>
-            <label><%= f.radio_button :enabled, 1, :checked => @company.enabled %>有効</label>
-            <label><%= f.radio_button :enabled, 0, :checked => !@company.enabled %>無効</label>
+            <div class="btn-group" data-toggle="buttons">
+            	<label class="btn btn-default <%= if @company.enabled then 'active' end %>">
+                <%= f.radio_button :enabled, 1, :checked => @company.enabled %> 有効
+            	</label>
+            	<label class="btn btn-default <%= unless @company.enabled then 'active' end %>">
+            		<%= f.radio_button :enabled, 0, :checked => !@company.enabled %>無効
+            	</label>
+            </div>
           </td>
         </tr>
         <tr>
